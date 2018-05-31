@@ -85,3 +85,7 @@
 -keep public class com.android.vending.licensing.ILicensingService
 
 -keep class com.goole.gson.example.android.moel.**{*;}
+
+-keepclasseswithmembernames class * {  # 保持 native 方法不被混淆
+    native <methods>;
+}
