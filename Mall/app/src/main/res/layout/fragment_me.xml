@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightGray">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/me_avatar_background">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/avatar"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/avatar"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="山洼之神"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/username"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18345**5334"
+                android:visibility="gone"
+                android:id="@+id/account"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@mipmap/me_setting"
+            android:layout_alignParentRight="true"
+            android:id="@+id/setting"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:id="@+id/myorder_ll"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextBlack"
+                android:textSize="16sp"
+                android:text="我的订单"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextGray"
+                android:layout_marginRight="5dp"
+                android:text="查看全部"/>
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@mipmap/right_expansion" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:layout_marginTop="1dp"
+            android:paddingTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="待付款"
+                android:id="@+id/wait_pay"
+                android:drawableTop="@mipmap/wait_pay"
+                android:textColor="@color/colorTextGray"
+                android:background="@color/colorWhite"
+                android:layout_height="60dp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/colorTextGray"
+                android:text="待发货"
+                android:id="@+id/wait_send"
+                android:drawableTop="@mipmap/wait_send"
+                android:background="@color/colorWhite"
+                android:layout_height="60dp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="待收货"
+                android:id="@+id/wait_receive"
+                android:drawableTop="@mipmap/wait_receive"
+                android:textColor="@color/colorTextGray"
+                android:background="@color/colorWhite"
+                android:layout_height="60dp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="售后／退款"
+                android:id="@+id/server"
+                android:drawableTop="@mipmap/server"
+                android:textColor="@color/colorTextGray"
+                android:background="@color/colorWhite"
+                android:layout_height="60dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:text="我的专属"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:background="@color/colorWhite"
+        android:paddingLeft="10dp"
+        android:textColor="@color/colorProduct"/>
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="1dp"
+        android:numColumns="4"
+        android:verticalSpacing="1dp"
+        android:id="@+id/me_grid"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="@color/colorWhite"
+        android:gravity="center_vertical"
+        android:id="@+id/help_ll"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="帮助中心"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorProduct"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/right_expansion"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#FFFFFD</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorApp">#ca9f75</color>
+    <color name="colorGray">#CCCCCC</color>
+    <color name="colorLightGray">#eeeeee</color>
+    <color name="colorYellow">#FFC125</color>
+    <color name="colorTranslucent">#88323232</color>
+    <color name="colorTextBlack">#333333</color>
+    <color name="colorTextGray">#666666</color>
+    <color name="colorLineGray">#EAEAEA</color>
+    <color name="colorSearchBg">#ffffff</color>
+    <color name="colorSearchText">#b2b2b2</color>
+    <color name="colorPriceText">#c83535</color>
+    <color name="colorProduct">#31271c</color>
+    <color name="colorAppBg">#f1f2f6</color>
+    <color name="colorLocationText">#bab3aa</color>
+    <color name="colorPorductButton">#c6c6c6</color>
+    <color name="colorLoginLine">#dcdcdc</color>
+    <color name="colorTitleBg">#d9000000</color>
+    <color name="colorAttrText">#31271C</color>
+</resources>

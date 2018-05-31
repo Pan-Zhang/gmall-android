@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.guotai.mall"
+        minSdkVersion 15
+        targetSdkVersion 19
+        versionCode 1
+        versionName "1.0"
+//        versionName APP_VERSION
+//        resValue("string", 'app_version', APP_VERSION)
+//        flavorDimensions "versionCode"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs{
+        releaseConfig{
+            keyAlias 'guotaigold'
+            keyPassword 'guotai123'
+            storeFile file('/Users/zhangpan/Desktop/android_key')
+            storePassword 'guotai123'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+//            signingConfig signingConfigs.releaseConfig
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.releaseConfig
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+//    productFlavors{
+//        commonsoon{
+//            manifestPlaceholders = [UMENG_CHANNEL:"commonsoon"]
+//        }
+//    }
+
+//    //修改生成的apk名字
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "GMall(" + APP_VERSION + ")_${variant.productFlavors[0].name}.apk"
+//        }
+//    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.android.support:appcompat-v7:25.2.0'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.6.0'
+    implementation 'com.google.code.gson:gson:2.6.2'
+    //微信sdk，包含统计功能
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    implementation 'com.android.support:support-v4:25.0.0'
+    implementation 'com.umeng.analytics:analytics:latest.integration'
+    implementation project(':PullToRefresh')
+    compile 'com.yanzhenjie.zbar:camera:1.0.0'
+}

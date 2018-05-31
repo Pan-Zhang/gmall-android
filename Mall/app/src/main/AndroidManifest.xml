@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.guotai.mall">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/appicon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.Main">
+        <activity android:name=".activity.splash.SplashActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data android:value="5a24af68f43e485f5f0000c1" android:name="UMENG_APPKEY"/>
+        <meta-data android:value="Wandoujia" android:name="UMENG_CHANNEL"/>
+
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.product.ProductActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.collection.CollectionActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.managerAddress.ManagerActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.suggest.SuggestActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.addAddress.AddAddressActivty"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.help.HelpActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.brower.BrowerActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.login.LoginActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.message.MessageActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.find.FindpassActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.regist.RegistActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name=".activity.setting.SettingActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"/>
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"/>
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+
+        <activity
+            android:name=".activity.makeOrder.MakeOrderActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.myOrder.MyOrderActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.search.SearchActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.orderDetail.OrderDetailActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.personInfo.PersonInfoActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.accountSafe.AccountSafeActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.resetPass.ResetPasswordActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.returnGood.ReturnGoodActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.logisticsDetail.LogisticsDetailActivity"/>
+
+        <activity
+            android:name=".activity.changePw.ChangePwActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.returngoodres.ReturnGoodResActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.splash.DirectActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.CategorySearch.CategorySearchActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.logisticInput.LogisticInputActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+
+        <activity android:name=".activity.about.AboutActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.payed.PayedActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.qucode.QrCodeActivity"
+            android:screenOrientation="portrait"/>
+
+    </application>
+
+</manifest>

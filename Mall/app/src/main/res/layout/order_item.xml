@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAppBg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="订单号：329989888382998"
+            android:textStyle="bold"
+            android:textColor="@color/colorProduct"
+            android:id="@+id/order_num"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="等待付款"
+            android:id="@+id/order_status"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/colorPriceText"/>
+
+    </LinearLayout>
+
+    <com.guotai.mall.widget.ProductView2
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:id="@+id/products"
+        android:orientation="vertical"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right|center_vertical"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorProduct"
+            android:id="@+id/total_count"
+            android:text="共件商品 需付款："/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:id="@+id/total"
+            android:textColor="@color/colorProduct"
+            android:text="¥ 1298.00"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="right|center_vertical"
+        android:background="@color/colorWhite"
+        android:id="@+id/order_ll"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="1dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:background="@drawable/text_bg"
+            android:textColor="@color/colorProduct"
+            android:id="@+id/button1"
+            android:visibility="invisible"
+            android:text="取消订单"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:background="@drawable/text_bg"
+            android:textColor="@color/colorProduct"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/button2"
+            android:text="取消订单"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:background="@drawable/text_bg"
+            android:textColor="@color/colorProduct"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/button3"
+            android:text="取消订单"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="30dp"
+            android:background="@drawable/text_bg_red"
+            android:textColor="@color/colorPriceText"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/button4"
+            android:text="取消订单"/>
+
+    </LinearLayout>
+
+</LinearLayout>

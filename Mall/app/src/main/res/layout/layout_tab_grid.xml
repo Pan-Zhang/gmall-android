@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:paddingTop="5dp"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="35dp"
+        android:layout_height="26dp">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/tab_iv"/>
+
+        <TextView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/product_num"
+            android:textColor="@color/colorWhite"
+            android:layout_alignParentRight="true"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:id="@+id/pro_num"
+            android:text="1"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/colorTextGray"
+        android:id="@+id/tab_tv"/>
+</LinearLayout>
