@@ -44,9 +44,9 @@ public class CollectionAdapter extends MyAdapter<CollectPro>{
         TextView collec_name = (TextView) convertView.findViewById(R.id.collec_name);
         collec_name.setText(product.ProductName);
         TextView collec_price = (TextView) convertView.findViewById(R.id.collec_price);
-        collec_price.setText("价格："+product.Price);
+        collec_price.setText(product.ProductDescription);
         TextView collec_date = (TextView) convertView.findViewById(R.id.collec_date);
-        collec_date.setText(product.CreateTime.substring(0,10));
+        collec_date.setText("¥" + product.Price);
         SlidingMenu slidingMenu = (SlidingMenu) convertView.findViewById(R.id.slide_menu);
         slidingMenu.setOnClickListener(new SlidingMenu.OnClickListener(){
 

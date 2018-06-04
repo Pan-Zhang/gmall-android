@@ -20,7 +20,7 @@ public class BaseActivity<T extends IBasePresent> extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+//        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         super.onCreate(savedInstanceState);
         dialogUtils = new DialogUtils();
     }

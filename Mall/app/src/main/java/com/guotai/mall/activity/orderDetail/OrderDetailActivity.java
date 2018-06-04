@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.alipay.sdk.app.PayTask;
 import com.guotai.mall.MyApplication;
 import com.guotai.mall.R;
+import com.guotai.mall.activity.addAddress.AddAddressActivty;
 import com.guotai.mall.activity.logisticsDetail.LogisticsDetailActivity;
 import com.guotai.mall.activity.makeOrder.MakeOrderActivity;
 import com.guotai.mall.activity.payed.PayedActivity;
@@ -374,6 +375,9 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
     public void updateAddress(List<Address> list) {
         if(list==null){
             Common.showToastShort("获取地址失败");
+        }
+        else if(list.size()==0){
+            startActivity(new Intent(this, AddAddressActivty.class));
         }
         else{
             List<CarPro> list_pro = new ArrayList<>();

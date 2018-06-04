@@ -22,7 +22,7 @@ public class BaseFragment<T extends IBasePresent> extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         dialogUtils = new DialogUtils();
-        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+//        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         super.onCreate(savedInstanceState);
     }
 

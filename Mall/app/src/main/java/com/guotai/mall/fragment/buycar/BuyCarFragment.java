@@ -21,6 +21,7 @@ import com.guotai.mall.Adapter.CarAdapter;
 import com.guotai.mall.Interface.RereshNumListener;
 import com.guotai.mall.MyApplication;
 import com.guotai.mall.R;
+import com.guotai.mall.activity.addAddress.AddAddressActivty;
 import com.guotai.mall.activity.brower.BrowerActivity;
 import com.guotai.mall.activity.collection.CollectionActivity;
 import com.guotai.mall.activity.login.LoginActivity;
@@ -317,6 +318,9 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
         dialogUtils.disMiss();
         if(list_address==null){
             Common.showToastShort("获取地址失败");
+        }
+        else if(list_address.size()==0){
+            startActivity(new Intent(getContext(), AddAddressActivty.class));
         }
         else{
             MakeOrderActivity.list_pro = choose_list;

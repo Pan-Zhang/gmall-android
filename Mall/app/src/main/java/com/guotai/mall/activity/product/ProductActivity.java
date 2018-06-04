@@ -27,6 +27,7 @@ import com.guotai.mall.base.BaseActivity;
 import com.guotai.mall.model.Address;
 import com.guotai.mall.model.CarPro;
 import com.guotai.mall.model.OrderEx;
+import com.guotai.mall.model.Product;
 import com.guotai.mall.model.ProductDetail;
 import com.guotai.mall.model.ProductEx;
 import com.guotai.mall.uitl.Common;
@@ -207,7 +208,7 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
         View add_view = LayoutInflater.from(this).inflate(R.layout.layout_add_car, null);
         add_view.setMinimumWidth(10000);
 
-        ImageView image = (ImageView) add_view.findViewById(R.id.image);
+        final ImageView image = (ImageView) add_view.findViewById(R.id.image);
         Picasso.with(this).load(product.FirstImage).resize(300, 300).centerInside().into(image);
 
         final TextView price_tv = (TextView) add_view.findViewById(R.id.price_tv);
@@ -232,13 +233,13 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
                 List<Map<String, Object>> all = product.ProductDetail;
                 List<Map<String, Object>> tem = new ArrayList<>();
 
-                while (iterator.hasNext()) {
-                    Map.Entry me = (Map.Entry) iterator.next();
-                    if(TextUtils.isEmpty(String.valueOf(me.getValue()))){
-                        Common.showToastShort("请选择相关属性");
-                        return;
-                    }
-                }
+//                while (iterator.hasNext()) {
+//                    Map.Entry me = (Map.Entry) iterator.next();
+//                    if(TextUtils.isEmpty(String.valueOf(me.getValue()))){
+//                        Common.showToastShort("请选择相关属性");
+//                        return;
+//                    }
+//                }
 
                 while (iterator.hasNext()) {
                     Map.Entry me = (Map.Entry) iterator.next();
@@ -251,8 +252,12 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
                     all = tem;
                     tem = new ArrayList<>();
                 }
-                choose_attr = all.get(0);
-                price_tv.setText(String.valueOf(all.get(0).get("Price")));
+                if(all.size()>0){
+                    choose_attr = all.get(0);
+                    price_tv.setText(String.valueOf(choose_attr.get("Price")));
+                    List<Map<String, String>> list = (List<Map<String, String>>)choose_attr.get("ProductDetailImage");
+                    Picasso.with(ProductActivity.this).load(list.get(0).get("ImagePath")).resize(300, 300).centerInside().into(image);
+                }
             }
         });
         product_attr_lv.setAdapter(proAttrAdapter);
