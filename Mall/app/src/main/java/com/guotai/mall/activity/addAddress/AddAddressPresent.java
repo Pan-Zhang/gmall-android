@@ -87,6 +87,7 @@ public class AddAddressPresent implements IBasePresent {
             @Override
             public void onFailure(Call call, String e) {
                 if(iAddAddressactivity!=null){
+                    Common.showToastShort(e);
                     iAddAddressactivity.addSuccess(false);
                 }
             }

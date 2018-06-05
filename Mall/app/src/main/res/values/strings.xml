@@ -81,6 +81,7 @@
     <string name="str_payed_success">付款成功</string>
 
     <string name="str_scan">扫码识货</string>
+    <string name="str_phone_error">输入号码有误！</string>
     
     <item name="tag_car" type="id"/>
     <item name="tag_order" type="id"/>

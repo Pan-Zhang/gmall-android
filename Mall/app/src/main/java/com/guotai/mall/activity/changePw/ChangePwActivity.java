@@ -1,6 +1,7 @@
 package com.guotai.mall.activity.changePw;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,6 +65,14 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresent> implements I
 
     @Override
     public void onClick(View v) {
+        if(TextUtils.isEmpty(old_pw.getText().toString())){
+            Common.showToastShort("请输入原始密码");
+            return;
+        }
+        if(TextUtils.isEmpty(new_pw.getText().toString())){
+            Common.showToastShort("请输入新密码");
+            return;
+        }
         dialogUtils.showWaitDialog(this);
         Map<String, String> map = new HashMap<>();
         map.put("UserID", Common.getUserID());

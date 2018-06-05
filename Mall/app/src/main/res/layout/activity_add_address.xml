@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:drawableRight="@mipmap/entry_dropdown"
                 android:id="@+id/province"
-                android:text="选择对应省份"
+                android:text="请选择省份"
                 android:padding="10dp"/>
 
             <Button
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:drawableRight="@mipmap/entry_dropdown"
                 android:id="@+id/city"
-                android:text="选择对应城市"
+                android:text="请选择城市"
                 android:padding="10dp"/>
 
             <Button
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:drawableRight="@mipmap/entry_dropdown"
                 android:id="@+id/county"
-                android:text="选择对应区县"
+                android:text="请选择区县"
                 android:padding="10dp"/>
 
         </LinearLayout>

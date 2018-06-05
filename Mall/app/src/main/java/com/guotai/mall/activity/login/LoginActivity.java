@@ -39,12 +39,12 @@ public class LoginActivity extends BaseActivity<LoginPresent> implements ILogina
                 case GET_CODE:
                     if(seconds>0){
                         seconds--;
-                        get_sms.setText("重新发送" + seconds);
+                        get_sms.setText("重新获取" + seconds);
                         get_sms.setClickable(false);
                         handler.sendEmptyMessageDelayed(GET_CODE, 1000);
                     }
                     else{
-                        get_sms.setText("重新发送");
+                        get_sms.setText("获取验证码");
                         get_sms.setClickable(true);
                     }
                     break;
@@ -127,6 +127,10 @@ public class LoginActivity extends BaseActivity<LoginPresent> implements ILogina
         switch (view.getId()){
 
             case R.id.submit:
+                if(!Common.isMobile(telephone.getText().toString())){
+                    Common.showToastShort("输入手机号格式有误");
+                    return;
+                }
                 if(position==0){
                     if(TextUtils.isEmpty(password.getText().toString())){
                         Common.showToastLong(R.string.str_input_password);
@@ -158,6 +162,10 @@ public class LoginActivity extends BaseActivity<LoginPresent> implements ILogina
                 break;
 
             case R.id.get_sms:
+                if(!Common.isMobile(telephone.getText().toString())){
+                    Common.showToastShort("输入手机号格式有误");
+                    return;
+                }
                 if(TextUtils.isEmpty(telephone.getText().toString())){
                     Common.showToastShort("请输入电话号码");
                 }else {

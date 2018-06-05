@@ -9,7 +9,6 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:background="@drawable/text_bg"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
         android:layout_height="match_parent"
@@ -20,11 +19,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/product_img"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorLineGray"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -53,7 +47,6 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:background="@drawable/text_bg"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:layout_marginRight="10dp"
@@ -65,11 +58,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/product_img1"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorLineGray"/>
 
         <TextView
             android:layout_width="match_parent"

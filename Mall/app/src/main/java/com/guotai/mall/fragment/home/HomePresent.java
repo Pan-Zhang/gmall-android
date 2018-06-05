@@ -1,6 +1,8 @@
 package com.guotai.mall.fragment.home;
 
 import com.guotai.mall.base.IBasePresent;
+import com.guotai.mall.model.HotSpot;
+import com.guotai.mall.model.HotspotInfoList;
 import com.guotai.mall.model.News;
 import com.guotai.mall.model.ProductEx;
 import com.guotai.mall.uitl.HttpFactory;
@@ -32,7 +34,7 @@ public class HomePresent implements IBasePresent {
 
             @Override
             public void onResponse(Call call, String response) {
-                List<News> list = Common.parseJsonArrayWithGson(response, News.class);
+                List<HotSpot> list = Common.parseJsonArrayWithGson(response, HotSpot.class);
                 if(iHomeFragment!=null)iHomeFragment.refresh(null, list, false);
             }
         }, tag);
@@ -79,6 +81,30 @@ public class HomePresent implements IBasePresent {
                 if(iHomeFragment!=null){
                    iHomeFragment.GotoDetail(productEx);
                 }
+            }
+        }, tag);
+    }
+
+    public void getData(String url, final HotspotInfoList hotspotInfoList, String tag) {
+
+        HttpFactory.getInstance().AsyncGet(url, new ResultBack() {
+            @Override
+            public void onFailure(Call call, String e) {
+                Common.showToastShort("获取数据失败，请重新刷新");
+                if(iHomeFragment!=null)iHomeFragment.refresh(null, false, hotspotInfoList);
+            }
+
+            @Override
+            public void onResponse(Call call, String response) {
+
+                try{
+                    List<ProductEx> list = Common.parseJsonArrayWithGson(response, ProductEx.class);
+
+                    if(iHomeFragment!=null)iHomeFragment.refresh(list, true, hotspotInfoList);
+                }catch (Exception e){
+
+                }
+
             }
         }, tag);
     }

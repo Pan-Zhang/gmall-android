@@ -39,25 +39,8 @@ public class RegistPresent implements IBasePresent {
 
             @Override
             public void onResponse(Call call, String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    if(jsonObject.has("Type")){
-                        if(jsonObject.get("Type").equals("Success")){
-                            if(iRegistactivity!=null){
-                                iRegistactivity.SendSuccess(true);
-                            }
-                        }
-                        else{
-                            if(iRegistactivity!=null){
-                                iRegistactivity.SendSuccess(false);
-                            }
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    if(iRegistactivity!=null){
-                        iRegistactivity.SendSuccess(false);
-                    }
+                if(iRegistactivity!=null){
+                    iRegistactivity.SendSuccess(true);
                 }
             }
         }, tag);

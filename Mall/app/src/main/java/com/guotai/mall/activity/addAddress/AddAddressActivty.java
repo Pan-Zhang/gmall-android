@@ -85,6 +85,10 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(province.getText().toString().equals("请选择省份") || city.getText().toString().equals("请选择城市") || county.getText().toString().equals("请选择区县")){
+                    Common.showToastShort("省市区信息不能为空！");
+                    return;
+                }
                 Map<String, String> map = new ArrayMap<String, String>();
                 map.put("UserID", Common.getUserID());
                 if(address!=null){
@@ -202,6 +206,8 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         current_province = province_list.get(position);
                         province.setText(current_province.ProvinceName);
+                        city.setText("请选择城市");
+                        county.setText("请选择区县");
                         present.loadCity("api/UserReceiver/GetCityList?ProvinceID=" + current_province.ProvinceID, AddAddressActivty.this.getClass().getSimpleName());
                         dialog.dismiss();
                     }
@@ -221,6 +227,7 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         current_city = city_list.get(position);
                         city.setText(current_city.CityName);
+                        county.setText("请选择区县");
                         present.loadCounty("api/UserReceiver/GeDistrictList?CityID=" + current_city.CityID, AddAddressActivty.this.getClass().getSimpleName());
                         dialog1.dismiss();
                     }

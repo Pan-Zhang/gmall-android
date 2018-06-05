@@ -3,9 +3,9 @@
     android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <com.guotai.mall.widget.ProductPager
+        android:id="@+id/head_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/head_pager"/>
+        android:layout_height="match_parent" />
 
     <com.guotai.mall.widget.ViewPagerIndicator
         android:layout_width="wrap_content"
@@ -15,20 +15,239 @@
         android:layout_marginBottom="5dp"
         android:id="@+id/indicator"/>
 
-    <RelativeLayout
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/propaganda"
+       android:paddingTop="8dp"
+       android:paddingBottom="8dp"
+       android:background="@color/colorWhite"
+       android:layout_below="@id/head_pager">
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="15dp"
+           android:gravity="center_vertical"
+           android:orientation="horizontal">
+
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@mipmap/correct"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/colorTextGray"
+               android:layout_marginLeft="3dp"
+               android:textSize="12sp"
+               android:text="品牌供应商直供"/>
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerHorizontal="true"
+           android:gravity="center_vertical"
+           android:orientation="horizontal">
+
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@mipmap/correct"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/colorTextGray"
+               android:layout_marginLeft="3dp"
+               android:textSize="12sp"
+               android:text="七天退换货无忧"/>
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:gravity="center_vertical"
+           android:layout_marginRight="15dp"
+           android:orientation="horizontal">
+
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@mipmap/correct"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/colorTextGray"
+               android:layout_marginLeft="3dp"
+               android:textSize="12sp"
+               android:text="100%正品保障"/>
+
+       </LinearLayout>
+
+   </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        android:layout_below="@id/head_pager"
-        android:layout_marginBottom="10dp">
+        android:layout_below="@id/propaganda"
+        android:background="@color/colorAppBg"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_centerInParent="true"
-            android:background="@mipmap/home_line"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginTop="8dp">
 
-    </RelativeLayout>
+            <com.guotai.mall.widget.HeaderLeftImage
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/header_left"/>
+
+            <com.guotai.mall.widget.HeaderRightImage
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/header_right_top"
+                android:layout_alignParentRight="true"/>
+
+            <com.guotai.mall.widget.HeaderRightImage
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/header_right_bottom"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/header_right_top"
+                android:layout_marginTop="6dp"/>
+
+        </RelativeLayout>
+
+        <com.guotai.mall.widget.HorizontalListView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorWhite"
+            android:layout_marginTop="8dp"
+            android:id="@+id/horizontal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="因为是你所以我愿意"
+                android:textSize="14sp"
+                android:textColor="@color/colorTextBlack"
+                android:id="@+id/title_tv1"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/content_tv1"
+                android:textColor="@color/colorTextGray"
+                android:textSize="12sp"
+                android:text="挑一款婚戒见证完美爱情"/>
+
+            <com.guotai.mall.widget.HomeHeadPager2
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:id="@+id/pager1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="因为是你所以我愿意"
+                android:textSize="14sp"
+                android:textColor="@color/colorTextBlack"
+                android:id="@+id/title_tv2"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorTextGray"
+                android:id="@+id/content_tv2"
+                android:textSize="12sp"
+                android:text="挑一款婚戒见证完美爱情"/>
+
+            <com.guotai.mall.widget.HomeHeadPager2
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:id="@+id/pager2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="因为是你所以我愿意"
+                android:textSize="14sp"
+                android:textColor="@color/colorTextBlack"
+                android:id="@+id/title_tv3"
+                android:layout_margin="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorTextGray"
+                android:id="@+id/content_tv3"
+                android:textSize="12sp"
+                android:text="挑一款婚戒见证完美爱情"/>
+
+            <com.guotai.mall.widget.HomeHeadPager2
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:id="@+id/pager3"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="猜你喜欢 Recomment"
+            android:textColor="@color/colorTextGray"
+            android:layout_marginTop="12dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="1dp"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

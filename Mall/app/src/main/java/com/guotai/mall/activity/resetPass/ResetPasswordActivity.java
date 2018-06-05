@@ -34,12 +34,12 @@ public class ResetPasswordActivity extends BaseActivity<ResetPassPresent> implem
                 case GET_CODE:
                     if(seconds>0){
                         seconds--;
-                        getCode.setText("重新发送" + seconds);
+                        getCode.setText("重新获取" + seconds);
                         getCode.setClickable(false);
                         handler.sendEmptyMessageDelayed(GET_CODE, 1000);
                     }
                     else{
-                        getCode.setText("重新发送");
+                        getCode.setText("获取验证码");
                         getCode.setClickable(true);
                     }
                     break;

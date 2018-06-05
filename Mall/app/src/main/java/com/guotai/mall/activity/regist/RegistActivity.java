@@ -31,7 +31,7 @@ public class RegistActivity extends BaseActivity<RegistPresent> implements IRegi
                 case GET_CODE:
                     if(seconds>0){
                         handler.sendEmptyMessageDelayed(GET_CODE, 1000);
-                        getCode.setText(seconds+"秒");
+                        getCode.setText("重新获取（"+seconds+"秒）");
                         seconds--;
                     }
                     else{
@@ -85,10 +85,14 @@ public class RegistActivity extends BaseActivity<RegistPresent> implements IRegi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.getCode:
+                if(!Common.isMobile(telephone.getText().toString())){
+                    Common.showToastShort("输入手机号格式有误");
+                    return;
+                }
                 if(TextUtils.isEmpty(telephone.getText().toString())){
                     Common.showToastLong(R.string.str_input_telephone);
                 }
-                else{
+                else {
                     seconds = 59;
                     handler.sendEmptyMessage(GET_CODE);
                     getCode.setClickable(false);
@@ -105,6 +109,9 @@ public class RegistActivity extends BaseActivity<RegistPresent> implements IRegi
                         || TextUtils.isEmpty(verify_code.getText().toString())){
                     Common.showToastLong(R.string.str_ensure_all);
                 }
+                else if(!password.getText().toString().equals(confirm_pass.getText().toString())){
+                    Common.showToastShort("两次密码不一致");
+                }
                 else{
                     dialogUtils.showWaitDialog(RegistActivity.this, "正在注册");
                     present.Login(RegistActivity.this.getClass().getSimpleName(), username.getText().toString(), password.getText().toString(), telephone.getText().toString(), verify_code.getText().toString());
@@ -116,7 +123,7 @@ public class RegistActivity extends BaseActivity<RegistPresent> implements IRegi
     @Override
     public void SendSuccess(Boolean succ) {
         if(succ){
-
+            Common.showToastShort("验证码发送成功");
         }
         else{
             seconds = 0;
