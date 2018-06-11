@@ -197,13 +197,26 @@ public class OrderAdapter extends MyAdapter<OrderEx> implements View.OnClickList
                     onClickButton.BackExchangeClickListener(orderDetailEx);
                 }
             }
+
+            @Override
+            public void GotoDetail(OrderDetailEx orderDetailEx) {
+                if(onClickButton!=null){
+                    onClickButton.GotoDetail(orderDetailEx);
+                }
+            }
         });
         holdView.products.setType(type);
         holdView.products.setData(order);
 
-        holdView.count.setText("共"+order.TotalQty+"件商品，需付款：");
+        if(type==0){
+            holdView.count.setText("共"+order.TotalQty+"件商品，需付款：");
+        }
+        else{
+            holdView.count.setText("共"+order.TotalQty+"件商品，实付款：");
+        }
 
-        holdView.total.setText(String.valueOf(order.TotalPrice));
+
+        holdView.total.setText("¥" + String.valueOf(order.PayAmount));
 
         return convertView;
     }
@@ -235,5 +248,6 @@ public class OrderAdapter extends MyAdapter<OrderEx> implements View.OnClickList
     public interface OnClickButton{
         void ClickButton(View button);
         void BackExchangeClickListener(OrderDetailEx orderDetailEx);
+        void GotoDetail(OrderDetailEx orderDetailEx);
     }
 }

@@ -116,7 +116,14 @@ public class ProductView2 extends LinearLayout {
             }else {
                 bottom_line.setVisibility(View.GONE);
             }
-
+            linearLayout.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(backExchangeClickListener!=null){
+                        backExchangeClickListener.GotoDetail(product);
+                    }
+                }
+            });
             addView(linearLayout);
         }
     }
@@ -124,7 +131,7 @@ public class ProductView2 extends LinearLayout {
     public interface BackExchangeClickListener{
 
         void OnClick(OrderDetailEx orderDetailEx);
-
+        void GotoDetail(OrderDetailEx orderDetailEx);
     }
 
 }

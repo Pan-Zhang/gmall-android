@@ -242,7 +242,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="猜你喜欢 Recomment"
+            android:text="猜你喜欢"
             android:textColor="@color/colorTextGray"
             android:layout_marginTop="12dp"
             android:textSize="16sp"

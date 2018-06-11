@@ -119,7 +119,7 @@
                 android:paddingLeft="5dp"
                 android:id="@+id/password"
                 android:textColor="@color/colorProduct"
-                android:hint="请输入短信验证码"
+                android:hint="请输入密码"
                 android:background="@null"/>
 
             <Button

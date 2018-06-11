@@ -147,13 +147,13 @@ public class ReturnGoodResActivity extends BaseActivity<ReturnGoodResPresent> im
         else if(afterSale.AfterSaleStatusID==17){//撤销
             do_next.setText("撤销售后请求");
         }
-        else if(afterSale.AfterSaleTypeID==6){//换货未通过
+        else if(afterSale.AfterSaleStatusID==6){//换货未通过
             do_next.setText("再次申请");
         }
-        else if(afterSale.AfterSaleTypeID==14){//退货未通过
+        else if(afterSale.AfterSaleStatusID==14){//退货未通过
             do_next.setText("再次申请");
         }
-        else if(afterSale.AfterSaleTypeID==21){//退款未通过
+        else if(afterSale.AfterSaleStatusID==21){//退款未通过
             do_next.setText("再次申请");
         }
         else{//无按钮
@@ -166,7 +166,7 @@ public class ReturnGoodResActivity extends BaseActivity<ReturnGoodResPresent> im
 //        startActivity(new Intent(ReturnGoodResActivity.this, LogisticInputActivity.class));
         if(v.getId()==R.id.do_next){
             int tag = Integer.parseInt(v.getTag().toString());
-            if(tag==1 || tag==8) {//撤销退换货申请
+            if(tag==1 || tag==8 ||tag==17) {//撤销退换货申请
                 Map<String, String> map = new HashMap<>();
                 map.put("UserID", Common.getUserID());
                 map.put("AfterOrderID", afterSale.AfterSaleOrderID);

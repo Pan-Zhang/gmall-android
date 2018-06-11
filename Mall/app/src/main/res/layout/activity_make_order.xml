@@ -27,7 +27,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
-                    android:text="张三  13454390938"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorProduct"
@@ -49,8 +48,7 @@
                     android:layout_below="@id/name_tel"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="25dp"
-                    android:id="@+id/location_tv"
-                    android:text="广东省深圳市福田区美寇时代广场b座408室"/>
+                    android:id="@+id/location_tv"/>
 
                 <ImageView
                     android:layout_width="match_parent"

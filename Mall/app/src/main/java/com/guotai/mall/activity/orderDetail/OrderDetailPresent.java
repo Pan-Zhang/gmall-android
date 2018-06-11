@@ -139,6 +139,24 @@ public class OrderDetailPresent implements IBasePresent {
         }, tag);
     }
 
+    public void ensureReceive(String url, Map<String, String> map, String tag){
+        HttpFactory.getInstance().AsyncPost(url, map, new ResultBack() {
+            @Override
+            public void onFailure(Call call, String e) {
+                if(iOrderDetailactivity!=null){
+                    iOrderDetailactivity.ensureReceive(false);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, String response) {
+                if(iOrderDetailactivity!=null){
+                    iOrderDetailactivity.ensureReceive(true);
+                }
+            }
+        }, tag);
+    }
+
     @Override
     public void destroy() {
         iOrderDetailactivity = null;

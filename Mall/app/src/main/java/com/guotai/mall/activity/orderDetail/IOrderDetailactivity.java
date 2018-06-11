@@ -18,4 +18,5 @@ public interface IOrderDetailactivity {
     void updateReason(List<ReturnReason> list);
     void requestBackRes(Boolean success);
     void alPayRes(boolean success, String reason);
+    void ensureReceive(boolean success);
 }

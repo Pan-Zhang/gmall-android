@@ -44,8 +44,8 @@
     <string name="str_input_telephone">请输入手机号</string>
     <string name="str_input_password">请输入密码</string>
     <string name="str_logining">正在登陆...</string>
-    <string name="str_login_failed">登陆失败</string>
-    <string name="str_login_success">登陆成功</string>
+    <string name="str_login_failed">登录失败</string>
+    <string name="str_login_success">登录成功</string>
     <string name="str_ensure_all">请确认您已经填完所有选项</string>
     <string name="str_reset_pass">重置密码</string>
     <string name="str_after_sale">退款售后</string>

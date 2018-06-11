@@ -3,9 +3,9 @@ package com.guotai.mall.fragment.myOrder;
 import com.guotai.mall.model.Address;
 import com.guotai.mall.model.AfterSale;
 import com.guotai.mall.model.Logistics;
-import com.guotai.mall.model.Order;
 import com.guotai.mall.model.OrderDetailEx;
 import com.guotai.mall.model.OrderEx;
+import com.guotai.mall.model.ProductEx;
 
 import java.util.List;
 
@@ -25,4 +25,5 @@ public interface IMyOrderfragment {
     void getSubDetail(boolean success, OrderDetailEx orderDetailEx);
     void updateAddress(List<Address> list, int position);
     void getAfterSaleDetailRes(boolean succ, AfterSale afterSale);
+    void gotoDetail(ProductEx orderDetail);
 }

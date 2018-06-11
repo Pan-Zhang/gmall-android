@@ -184,6 +184,15 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
                 pay_money.setText("确认收货");
                 break;
 
+            case 3:
+                if(detail.IsAllowRefund==1){
+                    pay_money.setText("申请退款");
+                }
+                else{
+                    pay_money.setText("再次购买");
+                }
+                break;
+
             case 4:
             case 5:
                 pay_money.setText("再次购买");
@@ -226,9 +235,15 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
                     present.getReason("api/OrderExtra/GetReturnReasonList?AfterSaleType=3", OrderDetailActivity.this.getClass().getSimpleName());
                 }
                 else if(type==2){//确认收货
-
+                    Map<String, String> map1 = new HashMap<>();
+                    map1.put("UserID", Common.getUserID());
+                    map1.put("OrderID", detail.OrderID);
+                    present.ensureReceive("api/Order/ReceivedOrder", map1, getClass().getSimpleName());
                 }
-                else if(type==4 || type==5){//再次购买
+                else if(type==3 && detail.IsAllowRefund==1){//再次申请退款
+                    present.getReason("api/OrderExtra/GetReturnReasonList?AfterSaleType=3", OrderDetailActivity.this.getClass().getSimpleName());
+                }
+                else if((type==3 && detail.IsAllowRefund==0) || type==4 || type==5){//再次购买
                     present.getAddress("api/UserReceiver/GetUserReceiverList?UserID="+Common.getUserID(), OrderDetailActivity.this.getClass().getSimpleName());
 
                 }
@@ -442,6 +457,17 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
         }
         else{
             Common.showToastShort("支付失败");
+        }
+    }
+
+    @Override
+    public void ensureReceive(boolean success) {
+        if(success){
+            Common.showToastShort("确认接收成功");
+            finish();
+        }
+        else{
+            Common.showToastShort("确认接收失败");
         }
     }
 }

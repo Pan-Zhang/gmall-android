@@ -50,7 +50,7 @@ public class PersonInfoPresent implements IBasePresent {
             @Override
             public void onResponse(Call call, String response) {
                 if(iPersonInfoactivity!=null){
-                    iPersonInfoactivity.sendCode(true, response);
+                    iPersonInfoactivity.sendCode(true, "验证码已发送，请注意接收");
                 }
             }
         }, tag);

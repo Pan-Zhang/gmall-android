@@ -55,5 +55,6 @@ public class OrderEx extends Order {
     public String ReceiverMobile;
     public int IsReturnExpired;
     public int IsExchangeExpired;
+    public int IsAllowRefund;
     public List<OrderDetailEx> OrderDetailList;
 }

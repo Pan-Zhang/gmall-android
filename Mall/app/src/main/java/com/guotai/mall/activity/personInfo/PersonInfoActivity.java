@@ -57,7 +57,7 @@ public class PersonInfoActivity extends BaseActivity<PersonInfoPresent> implemen
         @Override
         public boolean handleMessage(Message msg) {
             if(timeLong>0){
-                getCode.setText("重新获取("+timeLong+")");
+                getCode.setText("重新获取("+timeLong+"秒)");
                 timeLong--;
                 handler.sendEmptyMessageDelayed(0, 1000);
             }

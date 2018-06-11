@@ -214,4 +214,19 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/colorTextBlack"
+            android:text="注册代表你已同意注册协议和隐私协议"/>
+
+    </RelativeLayout>
+
 </LinearLayout>

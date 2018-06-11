@@ -12,6 +12,7 @@ import com.guotai.mall.Adapter.OrderAdapter;
 import com.guotai.mall.R;
 import com.guotai.mall.activity.makeOrder.MakeOrderActivity;
 import com.guotai.mall.activity.orderDetail.OrderDetailActivity;
+import com.guotai.mall.activity.product.ProductActivity;
 import com.guotai.mall.activity.returnGood.ReturnGoodActivity;
 import com.guotai.mall.activity.returngoodres.ReturnGoodResActivity;
 import com.guotai.mall.base.BaseFragment;
@@ -21,6 +22,7 @@ import com.guotai.mall.model.CarPro;
 import com.guotai.mall.model.Logistics;
 import com.guotai.mall.model.OrderDetailEx;
 import com.guotai.mall.model.OrderEx;
+import com.guotai.mall.model.ProductEx;
 import com.guotai.mall.uitl.Common;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -42,6 +44,7 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
     String url;
     PullToRefreshListView order_ls;
     int page = 1;
+    OrderEx _orderEx;
 
     @Nullable
     @Override
@@ -89,6 +92,12 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
                     present.getAfterSaleDetail("api/Order/GetAfterDetail?UserID=" + Common.getUserID() + "&OrderID=" + orderDetailEx.OrderID + "&OrderSubID=" + orderDetailEx.OrderSubID, MyOrderFragment.class.getSimpleName());
                 }
             }
+
+            @Override
+            public void GotoDetail(OrderDetailEx orderDetailEx) {
+                dialogUtils.showWaitDialog(getContext());
+                present.GetDetail(Common.getProductDetailURL(orderDetailEx.ProductID, Common.getUserID()), getClass().getSimpleName());
+            }
         });
         order_ls.setAdapter(orderAdapter);
         present.GetData(url, getClass().getSimpleName());
@@ -125,8 +134,8 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
             case OrderAdapter.REQUEST_BACK:
             case OrderAdapter.DETAIL:
             case OrderAdapter.PAY_NOW:
-                OrderEx orderEx = list.get(position);
-                present.getDetail("api/Order/GetOrderDetail?UserID=" + Common.getUserID() + "&OrderID=" + orderEx.OrderID, getActivity().getClass().getSimpleName());
+                _orderEx = list.get(position);
+                present.getDetail("api/Order/GetOrderDetail?UserID=" + Common.getUserID() + "&OrderID=" + _orderEx.OrderID, getActivity().getClass().getSimpleName());
 //                present.getLogistics("api/Order/QueryLogistics?OrderID=18", position, getActivity().getClass().getSimpleName());
                 break;
         }
@@ -214,6 +223,7 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
         dialogUtils.disMiss();
         if(success){
             present.getLogistics("api/Order/QueryLogistics?OrderID=" + orderEx.OrderID, orderEx, position, getActivity().getClass().getSimpleName());
+            orderEx.IsAllowRefund = _orderEx.IsAllowRefund;
         }
         else{
             Common.showToastLong(R.string.str_getdata_failed);
@@ -282,6 +292,18 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
             Common.showToastShort("获取售后详情失败");
         }
 
+    }
+
+    @Override
+    public void gotoDetail(ProductEx orderDetail) {
+        dialogUtils.disMiss();
+        if(orderDetail!=null){
+            ProductActivity.product = orderDetail;
+            startActivity(new Intent(getContext(), ProductActivity.class));
+        }
+        else{
+            Common.showToastShort("获取商品详情失败");
+        }
     }
 
     public void getUrl(){

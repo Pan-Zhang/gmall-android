@@ -7,6 +7,7 @@ import com.guotai.mall.model.AfterSale;
 import com.guotai.mall.model.Logistics;
 import com.guotai.mall.model.OrderDetailEx;
 import com.guotai.mall.model.OrderEx;
+import com.guotai.mall.model.ProductEx;
 import com.guotai.mall.uitl.Common;
 import com.guotai.mall.uitl.HttpFactory;
 import com.guotai.mall.uitl.ResultBack;
@@ -212,6 +213,25 @@ public class MyOrderPresent implements IBasePresent {
                 if(iMyOrderfragment!=null){
                     AfterSale afterSale = Common.parseJsonWithGson(response, AfterSale.class);
                     iMyOrderfragment.getAfterSaleDetailRes(true, afterSale);
+                }
+            }
+        }, tag);
+    }
+
+    public void GetDetail(String url, String tag){
+        HttpFactory.getInstance().AsyncGet(url, new ResultBack() {
+            @Override
+            public void onFailure(Call call, String e) {
+                if(iMyOrderfragment!=null){
+                    iMyOrderfragment.gotoDetail(null);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, String response) {
+                ProductEx productEx = Common.parseJsonWithGson(response, ProductEx.class);
+                if(iMyOrderfragment!=null){
+                    iMyOrderfragment.gotoDetail(productEx);
                 }
             }
         }, tag);

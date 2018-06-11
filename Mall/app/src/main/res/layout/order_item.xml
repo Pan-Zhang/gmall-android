@@ -59,7 +59,9 @@
             android:id="@+id/total"
             android:textColor="@color/colorProduct"
             android:text="¥ 1298.00"
-            android:layout_margin="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"/>
 
     </LinearLayout>
 
