@@ -203,9 +203,12 @@ public class ReturnGoodResActivity extends BaseActivity<ReturnGoodResPresent> im
 
     @Override
     public void doNext(Boolean res, String mess) {
-        Common.showToastShort(mess);
         if(res){
+            Common.showToastShort("撤销请求成功");
             finish();
+        }
+        else{
+            Common.showToastShort(mess);
         }
     }
 

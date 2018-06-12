@@ -85,30 +85,37 @@ public class ProductView2 extends LinearLayout {
             final Button back_exchange_btn = (Button) linearLayout.findViewById(R.id.back_exchange_btn);
             TextView status_tv = (TextView) linearLayout.findViewById(R.id.status_tv);
 
-            if(type==4 || (type==3  && product.IsAfterSale==0)){//没有申请过售后
-
-                back_exchange_btn.setVisibility(View.VISIBLE);
-                back_exchange_btn.setText("退换货");
-                status_tv.setVisibility(View.GONE);
-            }
-            else if(type==3 && product.IsAfterSale==1){
-                back_exchange_btn.setVisibility(View.VISIBLE);
-                back_exchange_btn.setText("查看详情");
+            if(orderEx.IsRefund==null || orderEx.IsRefund){
+                back_exchange_btn.setVisibility(View.GONE);
                 status_tv.setText(product.AfterSaleStatusName);
                 status_tv.setVisibility(View.VISIBLE);
             }
-            else {
-                back_exchange_btn.setVisibility(View.GONE);
-                status_tv.setVisibility(View.GONE);
-            }
-            back_exchange_btn.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(backExchangeClickListener!=null){
-                        backExchangeClickListener.OnClick(product);
-                    }
+            else{
+                if(type==4 || (type==3  && product.IsAfterSale==0)){//没有申请过售后
+
+                    back_exchange_btn.setVisibility(View.VISIBLE);
+                    back_exchange_btn.setText("退换货");
+                    status_tv.setVisibility(View.GONE);
                 }
-            });
+                else if(type==3 && product.IsAfterSale==1){
+                    back_exchange_btn.setVisibility(View.VISIBLE);
+                    back_exchange_btn.setText("查看详情");
+                    status_tv.setText(product.AfterSaleStatusName);
+                    status_tv.setVisibility(View.VISIBLE);
+                }
+                else {
+                    back_exchange_btn.setVisibility(View.GONE);
+                    status_tv.setVisibility(View.GONE);
+                }
+                back_exchange_btn.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(backExchangeClickListener!=null){
+                            backExchangeClickListener.OnClick(product);
+                        }
+                    }
+                });
+            }
 
             TextView bottom_line = (TextView) linearLayout.findViewById(R.id.bottom_line);
             if(isShowLine){

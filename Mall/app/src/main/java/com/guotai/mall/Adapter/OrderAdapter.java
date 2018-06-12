@@ -29,6 +29,7 @@ import static com.guotai.mall.activity.product.ProductActivity.product;
 
 public class OrderAdapter extends MyAdapter<OrderEx> implements View.OnClickListener {
 
+    public static final int CANCEL_BACK = -1;//取消退款
     public static final int CANCEL_ORDER = 0;//马上支付
     public static final int PAY_NOW = 1;//取消订单
     public static final int BUY_AGAIN = 2;//再次购买
@@ -142,7 +143,23 @@ public class OrderAdapter extends MyAdapter<OrderEx> implements View.OnClickList
             case 3:
 //                holdView.order_ll.setVisibility(View.GONE);
                 holdView.button1.setVisibility(View.INVISIBLE);
-                holdView.button2.setVisibility(View.INVISIBLE);
+
+                if(order.RefundStatus==1){
+                    holdView.button2.setVisibility(View.VISIBLE);
+                    holdView.button2.setText("撤销退款");
+                    holdView.button2.setTag(position);
+                    holdView.button2.setTag(R.id.tag_order, CANCEL_BACK);
+                }
+                else if(order.RefundStatus==2){
+                    holdView.button2.setVisibility(View.INVISIBLE);
+                }
+                else if(order.RefundStatus==3){
+                    holdView.button2.setVisibility(View.VISIBLE);
+                    holdView.button2.setText("申请退款");
+                    holdView.button2.setTag(position);
+                    holdView.button2.setTag(R.id.tag_order, REQUEST_BACK);
+                }
+
                 holdView.button3.setVisibility(View.VISIBLE);
                 holdView.button3.setTag(R.id.tag_order, DETAIL);
                 holdView.button3.setTag(position);

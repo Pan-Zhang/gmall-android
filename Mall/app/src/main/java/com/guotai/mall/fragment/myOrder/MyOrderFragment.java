@@ -106,11 +106,22 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
 
     public void operateButton(int type, int position){
         switch (type){
-            case OrderAdapter.CANCEL_ORDER:
-                Map<String, String> map = new HashMap<String, String>();
+            case OrderAdapter.CANCEL_BACK://撤销退款（仅退款）
+                if(_orderEx.OrderDetailList.get(0).AfterSaleOrderID==null){
+                    Common.showToastShort("未知错误");
+                    return;
+                }
+                Map<String, String> map = new HashMap<>();
                 map.put("UserID", Common.getUserID());
-                map.put("OrderID", list.get(position).OrderID);
-                present.cancelOrder("api/Order/CancelOrder", map, getClass().getSimpleName());
+                map.put("AfterOrderID", _orderEx.OrderDetailList.get(0).AfterSaleOrderID);
+                present.CancelBackExchange("api/Order/CancleAfterOrder", map, getClass().getSimpleName());
+                break;
+
+            case OrderAdapter.CANCEL_ORDER:
+                Map<String, String> map0 = new HashMap<String, String>();
+                map0.put("UserID", Common.getUserID());
+                map0.put("OrderID", list.get(position).OrderID);
+                present.cancelOrder("api/Order/CancelOrder", map0, getClass().getSimpleName());
                 break;
 
             case OrderAdapter.BUY_AGAIN:
@@ -135,7 +146,14 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
             case OrderAdapter.DETAIL:
             case OrderAdapter.PAY_NOW:
                 _orderEx = list.get(position);
-                present.getDetail("api/Order/GetOrderDetail?UserID=" + Common.getUserID() + "&OrderID=" + _orderEx.OrderID, getActivity().getClass().getSimpleName());
+                if(position==3){//售后订单详情
+                    present.getDetail("api/Order/GetAfterOrderDetail?UserID=" + Common.getUserID() + "&OrderID=" + _orderEx.OrderID, getActivity().getClass().getSimpleName());
+
+                }
+                else{//普通订单详情
+                    present.getDetail("api/Order/GetOrderDetail?UserID=" + Common.getUserID() + "&OrderID=" + _orderEx.OrderID, getActivity().getClass().getSimpleName());
+
+                }
 //                present.getLogistics("api/Order/QueryLogistics?OrderID=18", position, getActivity().getClass().getSimpleName());
                 break;
         }
@@ -223,7 +241,8 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
         dialogUtils.disMiss();
         if(success){
             present.getLogistics("api/Order/QueryLogistics?OrderID=" + orderEx.OrderID, orderEx, position, getActivity().getClass().getSimpleName());
-            orderEx.IsAllowRefund = _orderEx.IsAllowRefund;
+            orderEx.IsRefund = _orderEx.IsRefund;
+            orderEx.RefundStatus = _orderEx.RefundStatus;
         }
         else{
             Common.showToastLong(R.string.str_getdata_failed);
@@ -303,6 +322,17 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
         }
         else{
             Common.showToastShort("获取商品详情失败");
+        }
+    }
+
+    @Override
+    public void cancelBack(boolean success, String mess) {
+        dialogUtils.disMiss();
+        if(success){
+            Common.showToastShort("撤销请求成功");
+        }
+        else{
+            Common.showToastShort(mess);
         }
     }
 

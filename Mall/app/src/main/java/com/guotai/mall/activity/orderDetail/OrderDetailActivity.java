@@ -185,8 +185,16 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
                 break;
 
             case 3:
-                if(detail.IsAllowRefund==1){
-                    pay_money.setText("申请退款");
+                if(detail.IsRefund){
+                    if(detail.RefundStatus==1){
+                        pay_money.setText("撤销退款");
+                    }
+                    else if(detail.RefundStatus==2){
+                        pay_money.setText("再次购买");
+                    }
+                    else if(detail.RefundStatus==3){
+                        pay_money.setText("申请退款");
+                    }
                 }
                 else{
                     pay_money.setText("再次购买");
@@ -240,10 +248,26 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
                     map1.put("OrderID", detail.OrderID);
                     present.ensureReceive("api/Order/ReceivedOrder", map1, getClass().getSimpleName());
                 }
-                else if(type==3 && detail.IsAllowRefund==1){//再次申请退款
-                    present.getReason("api/OrderExtra/GetReturnReasonList?AfterSaleType=3", OrderDetailActivity.this.getClass().getSimpleName());
+                else if(type==3 && detail.IsRefund){//再次申请退款
+                    if(detail.IsRefund){
+                        if(detail.RefundStatus==1){//撤销退款
+                            Map<String, String> map = new HashMap<>();
+                            map.put("UserID", Common.getUserID());
+                            map.put("AfterOrderID", detail.OrderDetailList.get(0).AfterSaleOrderID);
+                            present.CancelBackExchange("api/Order/CancleAfterOrder", map, getClass().getSimpleName());
+                        }
+                        else if(detail.RefundStatus==2){//再次购买
+                            present.getAddress("api/UserReceiver/GetUserReceiverList?UserID="+Common.getUserID(), OrderDetailActivity.this.getClass().getSimpleName());
+                        }
+                        else if(detail.RefundStatus==3){//申请退款
+                            present.getReason("api/OrderExtra/GetReturnReasonList?AfterSaleType=3", OrderDetailActivity.this.getClass().getSimpleName());
+                        }
+                    }
+                    else{//再次购买
+                        present.getAddress("api/UserReceiver/GetUserReceiverList?UserID="+Common.getUserID(), OrderDetailActivity.this.getClass().getSimpleName());
+                    }
                 }
-                else if((type==3 && detail.IsAllowRefund==0) || type==4 || type==5){//再次购买
+                else if(type==4 || type==5){//再次购买
                     present.getAddress("api/UserReceiver/GetUserReceiverList?UserID="+Common.getUserID(), OrderDetailActivity.this.getClass().getSimpleName());
 
                 }
@@ -468,6 +492,18 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
         }
         else{
             Common.showToastShort("确认接收失败");
+        }
+    }
+
+    @Override
+    public void cancelBack(Boolean success, String mess) {
+        dialogUtils.disMiss();
+        if(success){
+            Common.showToastShort("撤销请求成功");
+            finish();
+        }
+        else{
+            Common.showToastShort(mess);
         }
     }
 }

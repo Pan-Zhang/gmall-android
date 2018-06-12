@@ -26,4 +26,5 @@ public interface IMyOrderfragment {
     void updateAddress(List<Address> list, int position);
     void getAfterSaleDetailRes(boolean succ, AfterSale afterSale);
     void gotoDetail(ProductEx orderDetail);
+    void cancelBack(boolean success, String mess);
 }

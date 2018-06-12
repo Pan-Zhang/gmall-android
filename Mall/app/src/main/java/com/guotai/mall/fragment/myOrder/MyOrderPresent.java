@@ -237,6 +237,24 @@ public class MyOrderPresent implements IBasePresent {
         }, tag);
     }
 
+    public void CancelBackExchange(String url, Map<String, String> map, String tag){
+        HttpFactory.getInstance().AsyncPost(url, map, new ResultBack() {
+            @Override
+            public void onFailure(Call call, String e) {
+                if(iMyOrderfragment!=null){
+                    iMyOrderfragment.cancelBack(false, e);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, String response) {
+                if(iMyOrderfragment!=null){
+                    iMyOrderfragment.cancelBack(true, response);
+                }
+            }
+        }, tag);
+    }
+
     @Override
     public void destroy() {
         iMyOrderfragment = null;

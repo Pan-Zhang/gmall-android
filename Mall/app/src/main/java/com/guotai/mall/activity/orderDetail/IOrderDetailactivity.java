@@ -19,4 +19,5 @@ public interface IOrderDetailactivity {
     void requestBackRes(Boolean success);
     void alPayRes(boolean success, String reason);
     void ensureReceive(boolean success);
+    void cancelBack(Boolean success, String mess);
 }
