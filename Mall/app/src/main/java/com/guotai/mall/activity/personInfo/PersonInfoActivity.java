@@ -24,7 +24,10 @@ import com.guotai.mall.Adapter.PersonInfoAdapter;
 import com.guotai.mall.R;
 import com.guotai.mall.activity.orderDetail.OrderDetailActivity;
 import com.guotai.mall.base.BaseActivity;
+import com.guotai.mall.model.PersonInfo;
 import com.guotai.mall.uitl.Common;
+import com.guotai.mall.uitl.HttpFactory;
+import com.guotai.mall.uitl.ResultBack;
 import com.guotai.mall.widget.BottomAnimDialog;
 import com.guotai.mall.widget.DatePickerDialog;
 
@@ -32,6 +35,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import okhttp3.Call;
 
 /**
  * Created by zhangpan on 17/8/3.
@@ -233,6 +238,32 @@ public class PersonInfoActivity extends BaseActivity<PersonInfoPresent> implemen
                 }
             }
         });
+
+        updatePersonInfo();
+    }
+
+    private void updatePersonInfo(){
+        if(!TextUtils.isEmpty(Common.getUserID())){
+            HttpFactory.getInstance().AsyncGet("api/Users/GetUserInfoByID?UserID="+Common.getUserID(), new ResultBack() {
+                @Override
+                public void onFailure(Call call, String e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, String response) {
+                    PersonInfo personInfo = Common.parseJsonWithGson(response, PersonInfo.class);
+                    Common.saveUser(personInfo.UserName==null?"":personInfo.UserName);
+                    list.get(0).content = personInfo.UserName==null?"":personInfo.UserName;
+                    Common.saveMobile(personInfo.Mobile==null?"":personInfo.Mobile);
+                    list.get(1).content = personInfo.Mobile==null?"":personInfo.Mobile;
+                    Common.saveGender(personInfo.Gender==null?"":personInfo.Gender);
+                    list.get(2).content = personInfo.Gender==null?"":personInfo.Gender
+                    Common.saveBirthday(personInfo.Birthday==null?"":personInfo.Birthday);
+                    list.get(3).content = personInfo.Birthday==null?"":personInfo.Birthday);
+                }
+            }, getClass().getSimpleName());
+        }
     }
 
     private void chooseSex(){

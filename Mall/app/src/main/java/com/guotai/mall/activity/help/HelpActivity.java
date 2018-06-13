@@ -1,6 +1,7 @@
 package com.guotai.mall.activity.help;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -38,6 +39,7 @@ public class HelpActivity extends BaseActivity<HelpPresent> implements IHelpacti
         weixin_tv = (TextView) findViewById(R.id.weixin_tv);
         email_tv = (TextView) findViewById(R.id.email_tv);
         phone_tv = (TextView) findViewById(R.id.phone_tv);
+        phone_tv.setOnClickListener(this);
         transfee = (LinearLayout)findViewById(R.id.transfee);
         transfee.setOnClickListener(this);
         transtype = (LinearLayout)findViewById(R.id.transtype);
@@ -72,6 +74,11 @@ public class HelpActivity extends BaseActivity<HelpPresent> implements IHelpacti
 
             case R.id.paytype:
                 openWebView(payType);
+                break;
+
+            case R.id.phone_tv:
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+phone_tv.getText().toString()));
+                startActivity(intent);
                 break;
         }
     }

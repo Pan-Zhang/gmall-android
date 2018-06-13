@@ -16,6 +16,7 @@ import com.guotai.mall.fragment.buycar.BuyCarFragment;
 import com.guotai.mall.fragment.category.CategoryFragment;
 import com.guotai.mall.fragment.home.HomeFragment;
 import com.guotai.mall.fragment.me.MeFragment;
+import com.guotai.mall.model.PersonInfo;
 import com.guotai.mall.uitl.Common;
 import com.guotai.mall.uitl.HttpFactory;
 import com.guotai.mall.uitl.ResultBack;
@@ -43,6 +44,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         init();
+
+        updatePersonInfo();
 
 //        if(!TextUtils.isEmpty(Common.getToken()) && !TextUtils.isEmpty(Common.getRefreshToken())){
 //            Map<String, String> map = new HashMap<String, String>();
@@ -83,6 +86,26 @@ public class MainActivity extends BaseActivity {
 //                }
 //            }, MainActivity.this.getClass().getSimpleName());
 //        }
+    }
+
+    private void updatePersonInfo(){
+        if(!TextUtils.isEmpty(Common.getUserID())){
+            HttpFactory.getInstance().AsyncGet("api/Users/GetUserInfoByID?UserID="+Common.getUserID(), new ResultBack() {
+                @Override
+                public void onFailure(Call call, String e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, String response) {
+                    PersonInfo personInfo = Common.parseJsonWithGson(response, PersonInfo.class);
+                    Common.saveUser(personInfo.UserName==null?"":personInfo.UserName);
+                    Common.saveMobile(personInfo.Mobile==null?"":personInfo.Mobile);
+                    Common.saveGender(personInfo.Gender==null?"":personInfo.Gender);
+                    Common.saveBirthday(personInfo.Birthday==null?"":personInfo.Birthday);
+                }
+            }, getClass().getSimpleName());
+        }
     }
 
     private void init() {
