@@ -1,5 +1,6 @@
 package com.guotai.mall.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -30,9 +31,9 @@ public class ProductDetail {
     private String Height;
     private String Qty;
     private String Weight;
-    private String CostPrice;
-    private String SuggestPrice;
-    private String Price;
+    private float CostPrice;
+    private float SuggestPrice;
+    private float Price;
     private String UnitID;
     private String UnitName;
     private String CreateTime;
@@ -130,16 +131,34 @@ public class ProductDetail {
         return Weight;
     }
 
-    public String getCostPrice() {
-        return CostPrice;
+    public float getCostPrice(){
+        float ft = CostPrice;
+        int scale = 2;//设置位数
+        int roundingMode = 4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.
+        BigDecimal bd = new BigDecimal((double)ft);
+        bd = bd.setScale(scale,roundingMode);
+        ft = bd.floatValue();
+        return ft;
     }
 
-    public String getSuggestPrice() {
-        return SuggestPrice;
+    public float getSuggestPrice(){
+        float ft = SuggestPrice;
+        int scale = 2;//设置位数
+        int roundingMode = 4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.
+        BigDecimal bd = new BigDecimal((double)ft);
+        bd = bd.setScale(scale,roundingMode);
+        ft = bd.floatValue();
+        return ft;
     }
 
-    public String getPrice() {
-        return Price;
+    public float getPrice(){
+        float ft = Price;
+        int scale = 2;//设置位数
+        int roundingMode = 4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.
+        BigDecimal bd = new BigDecimal((double)ft);
+        bd = bd.setScale(scale,roundingMode);
+        ft = bd.floatValue();
+        return ft;
     }
 
     public String getUnitID() {
@@ -258,15 +277,15 @@ public class ProductDetail {
         Weight = weight;
     }
 
-    public void setCostPrice(String costPrice) {
+    public void setCostPrice(float costPrice) {
         CostPrice = costPrice;
     }
 
-    public void setSuggestPrice(String suggestPrice) {
+    public void setSuggestPrice(float suggestPrice) {
         SuggestPrice = suggestPrice;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         Price = price;
     }
 

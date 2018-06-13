@@ -1,5 +1,6 @@
 package com.guotai.mall.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -13,11 +14,11 @@ public class OrderEx extends Order {
     public String UserID;
     public String OrderTime;
     public String TotalPrice;
-    public String TotalDiscountAmount;
+    private float TotalDiscountAmount;
     public String ProtectCostTypeID;
     public String ProtectCost;
-    public String TranportFee;
-    public String PayAmount;
+    private float TranportFee;
+    private float PayAmount;
     public String TotalQty;
     public String TotalWeight;
     public int OrderStatusID;
@@ -58,4 +59,46 @@ public class OrderEx extends Order {
     public Boolean IsRefund;
     public int RefundStatus;
     public List<OrderDetailEx> OrderDetailList;
+
+    public float getTotalDiscountAmount(){
+        float ft = TotalDiscountAmount;
+        int scale = 2;//设置位数
+        int roundingMode = 4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.
+        BigDecimal bd = new BigDecimal((double)ft);
+        bd = bd.setScale(scale,roundingMode);
+        ft = bd.floatValue();
+        return ft;
+    }
+
+    public void setTotalDiscountAmount(float TotalDiscountAmount){
+        this.TotalDiscountAmount = TotalDiscountAmount;
+    }
+
+    public float getTranportFee(){
+        float ft = TranportFee;
+        int scale = 2;//设置位数
+        int roundingMode = 4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.
+        BigDecimal bd = new BigDecimal((double)ft);
+        bd = bd.setScale(scale,roundingMode);
+        ft = bd.floatValue();
+        return ft;
+    }
+
+    public void setTranportFee(float TranportFee){
+        this.TranportFee = TranportFee;
+    }
+
+    public float getPayAmount(){
+        float ft = PayAmount;
+        int scale = 2;//设置位数
+        int roundingMode = 4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.
+        BigDecimal bd = new BigDecimal((double)ft);
+        bd = bd.setScale(scale,roundingMode);
+        ft = bd.floatValue();
+        return ft;
+    }
+
+    public void setPayAmount(float PayAmount){
+        this.PayAmount = PayAmount;
+    }
 }

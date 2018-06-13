@@ -62,7 +62,7 @@ public class PayedActivity extends BaseActivity<PayedPresent> implements View.On
             receive_address.setText(detail.ProvinceName + detail.CityName + detail.DistrictName + detail.ReceiverAddress);
         }
         pay_money = (TextView) findViewById(R.id.pay_money);
-        pay_money.setText(detail.PayAmount);
+        pay_money.setText(Common.get2Digital(detail.getPayAmount()));
         go_shop = (Button) findViewById(R.id.go_shop);
         go_shop.setOnClickListener(this);
         see_order = (Button) findViewById(R.id.see_order);

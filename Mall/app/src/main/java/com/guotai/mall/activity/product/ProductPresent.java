@@ -56,7 +56,7 @@ public class ProductPresent implements IBasePresent {
 
             map.put("ProductSubID", String.valueOf((int)Float.parseFloat(String.valueOf(productEx.ProductDetail.get(0).get("ProductSubID")))));
         }
-        map.put("Price", productEx.Price);
+        map.put("Price", Common.get2Digital(productEx.getPrice()));
         HttpFactory.getInstance().AsyncPost(url, map, new ResultBack() {
             @Override
             public void onFailure(Call call, String e) {

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.guotai.mall.R;
 import com.guotai.mall.model.CarPro;
 import com.guotai.mall.model.Product;
+import com.guotai.mall.uitl.Common;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -79,7 +80,7 @@ public class CarAdapter extends MyAdapter<CarPro> implements View.OnClickListene
         holdView.car_name.setText(product.ProductName);
         holdView.car_content.setText(product.ProductDescription);
         holdView.car_weight.setText(product.Weight);
-        holdView.car_price.setText("¥"+product.Price);
+        holdView.car_price.setText("¥"+ Common.get2Digital(product.getProductPrice()));
         holdView.car_count.setText(String.valueOf(product.Qty));
         holdView.car_del.setTag(position);
         holdView.car_add.setOnClickListener(this);

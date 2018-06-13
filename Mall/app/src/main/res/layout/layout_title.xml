@@ -38,6 +38,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="8dp"
+        android:textSize="17sp"
         android:textColor="@color/colorWhite"
         android:id="@+id/right_text"/>
 

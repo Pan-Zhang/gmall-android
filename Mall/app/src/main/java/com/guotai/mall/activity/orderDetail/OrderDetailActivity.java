@@ -140,7 +140,24 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
         invoice_head = (TextView) findViewById(R.id.invoice_head);
         invoice_head.setText(detail.InvoiceName);
         total_money = (TextView) findViewById(R.id.total_money);
-        total_money.setText(detail.PayAmount + "(含运费" + detail.TranportFee + "元)");
+        String str;
+        if(detail.getTranportFee()==0){
+            if(detail.getTotalDiscountAmount()==0){
+                str = "(包邮)";
+            }
+            else{
+                str = "(包邮+优惠¥"+ Common.get2Digital(detail.getTotalDiscountAmount())+")";
+            }
+        }
+        else{
+            if(detail.getTotalDiscountAmount()==0){
+                str = "(含运费¥" + Common.get2Digital(detail.getTranportFee()) + ")";
+            }
+            else{
+                str = "(含运费¥" + Common.get2Digital(detail.getTranportFee()) + "+优惠¥" + Common.get2Digital(detail.getTotalDiscountAmount()) + ")";
+            }
+        }
+        total_money.setText(Common.get2Digital(detail.getPayAmount()) + str);
         order_time = (TextView) findViewById(R.id.order_time);
         order_time.setText(detail.OrderTime);
         order_num = (TextView) findViewById(R.id.order_num);
@@ -426,7 +443,7 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
                 carPro.Qty = ex.OrderDetailList.get(i).Qty;
                 carPro.FirstImage = ex.OrderDetailList.get(i).FirstImage;
                 carPro.ProductDescription = ex.OrderDetailList.get(i).ProductDescription;
-                carPro.ProductPrice = ex.OrderDetailList.get(i).Price;
+                carPro.setProductPrice(ex.OrderDetailList.get(i).getPrice());
                 carPro.ProductID = ex.OrderDetailList.get(i).ProductID;
                 carPro.ProductSubID = ex.OrderDetailList.get(i).ProductSubID;
                 carPro.ProductName = ex.OrderDetailList.get(i).ProductName;

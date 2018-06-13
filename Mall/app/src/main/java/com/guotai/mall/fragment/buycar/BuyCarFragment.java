@@ -234,14 +234,14 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
             CarPro product = list.get(i);
             if(product.isChoose) {
                 choose_list.add(product);
-                BigDecimal b1 = new BigDecimal(product.ProductPrice);
+                BigDecimal b1 = new BigDecimal(product.getProductPrice());
                 BigDecimal d = b1.multiply(new BigDecimal(product.Qty));
                 all_money = all_money.add(d);
                 choose_product = choose_product + product.Qty;
             }
             all_product = all_product + product.Qty;
         }
-        pay.setText("¥"+String.valueOf(all_money));
+        pay.setText("¥"+Common.get2Digital(all_money.floatValue()));
         make_order.setText("去结算(" + String.valueOf(choose_product) + ")");
         if(list==null ||list.size()==0){
             no_product.setVisibility(View.VISIBLE);

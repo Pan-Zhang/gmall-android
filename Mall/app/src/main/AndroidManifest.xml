@@ -168,6 +168,9 @@
         <activity android:name=".activity.qucode.QrCodeActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".activity.WebView.WebViewActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

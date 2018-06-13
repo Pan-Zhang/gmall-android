@@ -133,7 +133,7 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
         product_name.setText(product.ProductName);
 
         product_price = (TextView) findViewById(R.id.product_price);
-        product_price.setText("¥" + product.Price);
+        product_price.setText("¥" + Common.get2Digital(product.getPrice()));
 
         attr_ll = (LinearLayout) findViewById(R.id.attr_ll);
 
@@ -212,7 +212,7 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
         Picasso.with(this).load(product.FirstImage).resize(300, 300).centerInside().into(image);
 
         final TextView price_tv = (TextView) add_view.findViewById(R.id.price_tv);
-        price_tv.setText(product.Price);
+        price_tv.setText(Common.get2Digital(product.getPrice()));
 
         ImageView close = (ImageView) add_view.findViewById(R.id.close);
         close.setOnClickListener(new View.OnClickListener() {
@@ -254,7 +254,7 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
                 }
                 if(all.size()>0){
                     choose_attr = all.get(0);
-                    price_tv.setText(String.valueOf(choose_attr.get("Price")));
+                    price_tv.setText(Common.get2Digital(Float.parseFloat(String.valueOf(choose_attr.get("Price")))));
                     List<Map<String, String>> list = (List<Map<String, String>>)choose_attr.get("ProductDetailImage");
                     Picasso.with(ProductActivity.this).load(list.get(0).get("ImagePath")).resize(300, 300).centerInside().into(image);
                 }
@@ -305,7 +305,7 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
                     map.put("UserID", Common.getUserID());
                     map.put("ProductID", product.ProductID);
                     map.put("ProductSubID", String.valueOf((int)Float.parseFloat(String.valueOf(all.get(0).get("ProductSubID")))));
-                    map.put("Price", product.Price);
+                    map.put("Price", Common.get2Digital(product.getPrice()));
                     map.put("Qty", count.getText().toString());
                     present.addToCar("api/ShopCart/AddShopCart", map, ProductActivity.class.getSimpleName());
                 }
@@ -381,7 +381,7 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
             carPro.Qty = Integer.parseInt(count.getText().toString());
             carPro.FirstImage = product.FirstImage;
             carPro.ProductDescription = product.Description;
-            carPro.ProductPrice = String.valueOf(choose_attr.get("Price"));
+            carPro.setProductPrice(Float.parseFloat(String.valueOf(choose_attr.get("Price"))));
             carPro.ProductID = product.ProductID;
             carPro.ProductSubID = String.valueOf((int)Float.parseFloat(String.valueOf(choose_attr.get("ProductSubID"))));
             carPro.ProductName = product.ProductName;

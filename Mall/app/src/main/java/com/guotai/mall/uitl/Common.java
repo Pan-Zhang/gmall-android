@@ -11,6 +11,7 @@ import com.google.gson.JsonParser;
 import com.guotai.mall.MyApplication;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -275,5 +276,10 @@ public class Common {
      */
     public static boolean isIPAddr(String ipAddr) {
         return Pattern.matches(REGEX_IP_ADDR, ipAddr);
+    }
+
+    public static String get2Digital(float number){
+        DecimalFormat decimalFormat=new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        return decimalFormat.format(number);//format 返回的是字符串
     }
 }

@@ -14,6 +14,7 @@ import com.guotai.mall.R;
 import com.guotai.mall.model.CarPro;
 import com.guotai.mall.model.OrderDetailEx;
 import com.guotai.mall.model.OrderEx;
+import com.guotai.mall.uitl.Common;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -77,7 +78,7 @@ public class ProductView2 extends LinearLayout {
             content.setText(product.ProductDescription);
 
             TextView price = (TextView) linearLayout.findViewById(R.id.price);
-            price.setText("¥"+product.Price);
+            price.setText("¥"+ Common.get2Digital(product.getPrice()));
 
             TextView count = (TextView) linearLayout.findViewById(R.id.count);
             count.setText("x"+product.Qty);

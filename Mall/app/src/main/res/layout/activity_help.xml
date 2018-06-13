@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="微信订阅号"
+            android:text="微信订阅号："
             android:textSize="14sp"
             android:textColor="@color/colorTextGray"
             android:layout_marginLeft="10dp"/>
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextGray"
-            android:text="GMall"
+            android:id="@+id/weixin_tv"
             android:textSize="14sp"
             android:layout_marginLeft="15dp"/>
 
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextGray"
-            android:text="123456@guotai.com"
+            android:id="@+id/email_tv"
             android:textSize="14sp"
             android:layout_marginLeft="15dp"/>
 
@@ -85,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextGray"
-            android:text="0788-9872890"
+            android:id="@+id/phone_tv"
             android:textSize="14sp"
             android:layout_marginLeft="15dp"/>
 
@@ -104,6 +104,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:padding="8dp"
+        android:id="@+id/transfee"
         android:orientation="horizontal">
 
         <TextView
@@ -128,6 +129,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:padding="8dp"
+        android:id="@+id/transtype"
         android:layout_marginTop="1dp"
         android:orientation="horizontal">
 
@@ -153,6 +155,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:padding="8dp"
+        android:id="@+id/paytype"
         android:gravity="center_vertical"
         android:layout_marginTop="1dp"
         android:orientation="horizontal">

@@ -15,6 +15,7 @@ import com.guotai.mall.model.OrderDetail;
 import com.guotai.mall.model.OrderDetailEx;
 import com.guotai.mall.model.OrderEx;
 import com.guotai.mall.model.Product;
+import com.guotai.mall.uitl.Common;
 import com.guotai.mall.widget.ProductView;
 import com.guotai.mall.widget.ProductView2;
 
@@ -233,7 +234,7 @@ public class OrderAdapter extends MyAdapter<OrderEx> implements View.OnClickList
         }
 
 
-        holdView.total.setText("¥" + String.valueOf(order.PayAmount));
+        holdView.total.setText("¥" + Common.get2Digital(order.getPayAmount()));
 
         return convertView;
     }

@@ -39,7 +39,7 @@ public class LoginActivity extends BaseActivity<LoginPresent> implements ILogina
                 case GET_CODE:
                     if(seconds>0){
                         seconds--;
-                        get_sms.setText("重新获取" + seconds);
+                        get_sms.setText("重新获取(" + seconds + "秒)");
                         get_sms.setClickable(false);
                         handler.sendEmptyMessageDelayed(GET_CODE, 1000);
                     }

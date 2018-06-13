@@ -12,6 +12,7 @@ import com.guotai.mall.R;
 import com.guotai.mall.model.CollectPro;
 import com.guotai.mall.model.Product;
 import com.guotai.mall.model.ProductEx;
+import com.guotai.mall.uitl.Common;
 import com.guotai.mall.widget.SlidingMenu;
 import com.squareup.picasso.Picasso;
 
@@ -46,7 +47,7 @@ public class CollectionAdapter extends MyAdapter<CollectPro>{
         TextView collec_price = (TextView) convertView.findViewById(R.id.collec_price);
         collec_price.setText(product.ProductDescription);
         TextView collec_date = (TextView) convertView.findViewById(R.id.collec_date);
-        collec_date.setText("¥" + product.Price);
+        collec_date.setText("¥" + Common.get2Digital(product.getPrice()));
         SlidingMenu slidingMenu = (SlidingMenu) convertView.findViewById(R.id.slide_menu);
         slidingMenu.setOnClickListener(new SlidingMenu.OnClickListener(){
 

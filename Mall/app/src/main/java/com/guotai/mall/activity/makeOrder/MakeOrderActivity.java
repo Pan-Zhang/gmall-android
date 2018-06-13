@@ -67,7 +67,7 @@ public class MakeOrderActivity extends BaseActivity<MakeOrderPresent> implements
             return;
         }
         for(int i=0; i<list_pro.size(); i++){
-            BigDecimal b1 = new BigDecimal(list_pro.get(i).ProductPrice);
+            BigDecimal b1 = new BigDecimal(list_pro.get(i).getProductPrice());
             BigDecimal d = b1.multiply(new BigDecimal(list_pro.get(i).Qty));
             money = money.add(d);
         }
@@ -86,7 +86,7 @@ public class MakeOrderActivity extends BaseActivity<MakeOrderPresent> implements
             }
         }
         total_price = (TextView) findViewById(R.id.total_price);
-        total_price.setText("¥" + String.valueOf(money));
+        total_price.setText("¥" + Common.get2Digital(money.floatValue()));
 
         productView = (ProductView) findViewById(R.id.productView);
 
@@ -163,7 +163,7 @@ public class MakeOrderActivity extends BaseActivity<MakeOrderPresent> implements
                     OrderDetail detail = new OrderDetail();
                     detail.ProductID = pro.ProductID;
                     detail.ProductSubID = pro.ProductSubID;
-                    detail.Price = pro.ProductPrice;
+                    detail.setPrice(pro.getProductPrice());
                     detail.Qty = pro.Qty;
                     list_detail.add(detail);
                 }
@@ -191,11 +191,11 @@ public class MakeOrderActivity extends BaseActivity<MakeOrderPresent> implements
     public void updateLogisticFee(boolean res, LogisticFee logisticFee) {
         if(res){
             this.logisticFee = logisticFee;
-            if(Float.parseFloat(logisticFee.TranportFee)==0){
-                true_pay.setText("¥" + String.valueOf(money.add(new BigDecimal(logisticFee.TranportFee))) + "包邮");
+            if(logisticFee.getTranportFee()==0){
+                true_pay.setText("¥" + Common.get2Digital(money.add(new BigDecimal(logisticFee.getTranportFee())).floatValue()) + "包邮");
             }
             else{
-                true_pay.setText("¥" + String.valueOf(money.add(new BigDecimal(logisticFee.TranportFee))) + "(含运费:¥" + logisticFee.TranportFee + ")");
+                true_pay.setText("¥" + Common.get2Digital(money.add(new BigDecimal(logisticFee.getTranportFee())).floatValue()) + "(含运费:¥" + logisticFee.getTranportFee() + ")");
             }
         }
     }

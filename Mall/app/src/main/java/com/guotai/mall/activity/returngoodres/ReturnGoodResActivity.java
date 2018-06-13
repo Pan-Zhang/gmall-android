@@ -108,11 +108,11 @@ public class ReturnGoodResActivity extends BaseActivity<ReturnGoodResPresent> im
         List<CarPro> list = new ArrayList<>();
         for(OrderDetailEx detail : afterSale.OrderDetailList){
             CarPro carPro = new CarPro();
-            carPro.Price = detail.Price;
+            carPro.setPrice(detail.getPrice());
             carPro.FirstImage = detail.FirstImage;
             carPro.ProductName = detail.ProductName;
             carPro.ProductDescription = detail.ProductDescription;
-            carPro.ProductPrice = detail.Price;
+            carPro.setProductPrice(detail.getPrice());
             carPro.Qty = detail.Qty;
             list.add(carPro);
         }

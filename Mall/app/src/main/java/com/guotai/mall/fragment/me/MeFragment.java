@@ -115,7 +115,7 @@ public class MeFragment extends BaseFragment<MePresent> implements IMefragment, 
     public void onResume() {
         super.onResume();
         if(TextUtils.isEmpty(Common.getUser())){
-            username.setText("注册/登陆");
+            username.setText("注册/登录");
         }
         else{
             username.setText(Common.getUser());

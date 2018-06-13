@@ -64,7 +64,7 @@ public class ProductView extends LinearLayout {
             content.setText(product.ProductDescription);
 
             TextView price = (TextView) linearLayout.findViewById(R.id.price);
-            price.setText("¥"+product.ProductPrice);
+            price.setText("¥"+product.getProductPrice());
 
             TextView count = (TextView) linearLayout.findViewById(R.id.count);
             count.setText("x"+product.Qty);

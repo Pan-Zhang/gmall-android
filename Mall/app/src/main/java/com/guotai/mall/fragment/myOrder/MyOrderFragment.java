@@ -288,7 +288,7 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
                 carPro.Qty = ex.OrderDetailList.get(i).Qty;
                 carPro.FirstImage = ex.OrderDetailList.get(i).FirstImage;
                 carPro.ProductDescription = ex.OrderDetailList.get(i).ProductDescription;
-                carPro.ProductPrice = ex.OrderDetailList.get(i).Price;
+                carPro.setProductPrice(ex.OrderDetailList.get(i).getPrice());
                 carPro.ProductID = ex.OrderDetailList.get(i).ProductID;
                 carPro.ProductSubID = ex.OrderDetailList.get(i).ProductSubID;
                 carPro.ProductName = ex.OrderDetailList.get(i).ProductName;

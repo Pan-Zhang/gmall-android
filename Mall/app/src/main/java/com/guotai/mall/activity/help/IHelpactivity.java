@@ -5,4 +5,6 @@ package com.guotai.mall.activity.help;
  */
 
 public interface IHelpactivity {
+
+    void update(Boolean success, HelpPresent.HelpData mess);
 }

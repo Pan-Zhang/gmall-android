@@ -13,7 +13,7 @@
     <string name="str_receiver">收货人姓名</string>
     <string name="str_telnum">手机号码</string>
     <string name="str_address">所在地区</string>
-    <string name="str_detail_addr">详细地址，请限制在60字以内</string>
+    <string name="str_detail_addr">详细地址，请限制在50字以内</string>
     <string name="str_save">保存</string>
     <string name="str_email">输入邮箱地址</string>
     <string name="str_submit">提交</string>

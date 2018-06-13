@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.guotai.mall.R;
 import com.guotai.mall.model.Product;
 import com.guotai.mall.model.ProductEx;
+import com.guotai.mall.uitl.Common;
 import com.guotai.mall.widget.ProductImage;
 import com.squareup.picasso.Picasso;
 
@@ -50,7 +51,7 @@ public class HomeAdapter extends MyAdapter<ProductEx> implements View.OnClickLis
         TextView product_name = (TextView) convertView.findViewById(R.id.product_name);
         product_name.setText(product.ProductName);
         TextView product_price = (TextView) convertView.findViewById(R.id.product_price);
-        product_price.setText("¥" + product.Price);
+        product_price.setText("¥" + Common.get2Digital(product.getPrice()));
 
         LinearLayout right_ll = (LinearLayout) convertView.findViewById(R.id.right_ll);
         if(list.size()>position*2+1){
@@ -63,7 +64,7 @@ public class HomeAdapter extends MyAdapter<ProductEx> implements View.OnClickLis
             TextView product_name1 = (TextView) convertView.findViewById(R.id.product_name1);
             product_name1.setText(product1.ProductName);
             TextView product_price1 = (TextView) convertView.findViewById(R.id.product_price1);
-            product_price1.setText("¥" + product1.Price);
+            product_price1.setText("¥" + Common.get2Digital(product1.getPrice()));
         }else{
             right_ll.setVisibility(View.INVISIBLE);
         }

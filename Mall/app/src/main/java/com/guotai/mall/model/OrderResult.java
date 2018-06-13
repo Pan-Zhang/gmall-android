@@ -1,5 +1,7 @@
 package com.guotai.mall.model;
 
+import java.math.BigDecimal;
+
 /**
  * Created by zhangpan on 17/11/1.
  */
@@ -15,7 +17,7 @@ public class OrderResult {
     public String ProtectCostTypeID;
     public String ProtectCost;
     public String TranportFee;
-    public String PayAmount;
+    private float PayAmount;
     public String TotalQty;
     public String TotalWeight;
     public String OrderStatusID;
@@ -38,4 +40,18 @@ public class OrderResult {
     public String InvoiceName;
     public String DeleteTime;
     public boolean IsDelete;
+
+    public void setPayAmount(float PayAmount){
+        this.PayAmount = PayAmount;
+    }
+
+    public float getPayAmount(){
+        float ft = PayAmount;
+        int scale = 2;//设置位数
+        int roundingMode = 4;//表示四舍五入，可以选择其他舍值方式，例如去尾，等等.
+        BigDecimal bd = new BigDecimal((double)ft);
+        bd = bd.setScale(scale,roundingMode);
+        ft = bd.floatValue();
+        return ft;
+    }
 }
