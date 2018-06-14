@@ -86,7 +86,7 @@ public class ReturnGoodResActivity extends BaseActivity<ReturnGoodResPresent> im
         back_reason.setText(afterSale.ReturnReasonName);
 
         back_money = (TextView) findViewById(R.id.back_money);
-        back_money.setText(String.valueOf(afterSale.ReturnAmount));
+        back_money.setText(Common.get2Digital(afterSale.ReturnAmount));
 
         request_time = (TextView) findViewById(R.id.request_time);
         request_time.setText(afterSale.CreateTime);

@@ -2,6 +2,7 @@ package com.guotai.mall.activity.makeOrder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -41,7 +42,7 @@ public class MakeOrderActivity extends BaseActivity<MakeOrderPresent> implements
     RelativeLayout choose_address;
     public static List<CarPro> list_pro;
     public static List<Address> list_address;
-    EditText invoice_head;
+    EditText invoice_head, remark;
     CheckBox invoice;
     Address current_address;
     LogisticFee logisticFee;
@@ -98,6 +99,7 @@ public class MakeOrderActivity extends BaseActivity<MakeOrderPresent> implements
         invoice = (CheckBox) findViewById(R.id.invoice);
 
         invoice_head = (EditText) findViewById(R.id.invoice_head);
+        remark = (EditText) findViewById(R.id.remark);
         choose_address = (RelativeLayout) findViewById(R.id.choose_address);
         choose_address.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +150,7 @@ public class MakeOrderActivity extends BaseActivity<MakeOrderPresent> implements
                 map.put("ProtectCostTypeID", "0");
                 map.put("UserReceiverID", current_address.UserReceiverID);
                 map.put("LogisticsID", "0");
-                map.put("Remark", "");
+                map.put("Remark", remark.getText().toString());
                 if(invoice.isChecked()){
                     map.put("InvoiceFlag", "true");
                     map.put("InvoiceName", invoice_head.getText().toString());
@@ -195,7 +197,7 @@ public class MakeOrderActivity extends BaseActivity<MakeOrderPresent> implements
                 true_pay.setText("¥" + Common.get2Digital(money.add(new BigDecimal(logisticFee.getTranportFee())).floatValue()) + "包邮");
             }
             else{
-                true_pay.setText("¥" + Common.get2Digital(money.add(new BigDecimal(logisticFee.getTranportFee())).floatValue()) + "(含运费:¥" + logisticFee.getTranportFee() + ")");
+                true_pay.setText("¥" + Common.get2Digital(money.add(new BigDecimal(logisticFee.getTranportFee())).floatValue()) + "(含运费:¥" + Common.get2Digital(logisticFee.getTranportFee()) + ")");
             }
         }
     }
@@ -203,7 +205,7 @@ public class MakeOrderActivity extends BaseActivity<MakeOrderPresent> implements
     @Override
     public void updateAddress(List<Address> list) {
         list_address = list;
-        if(popWindow.isShowing()){
+        if(popWindow!=null && popWindow.isShowing()){
             popWindow.dismiss();
             popWindow=null;
             popWindow = new AddressPopWindow(MakeOrderActivity.this, list_address);

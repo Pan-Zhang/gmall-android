@@ -8,8 +8,8 @@ android {
         minSdkVersion 15
         targetSdkVersion 19
 
-        versionCode 1
-        versionName "1.0"
+        versionCode 1//小改
+        versionName "1.0"//大版本迭代
 
 //        versionName APP_VERSION
 //        resValue("string", 'app_version', APP_VERSION)
