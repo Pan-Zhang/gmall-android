@@ -60,6 +60,7 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
     public static OrderEx detail;
     public static Logistics logistics;
     TextView name_tel, receive_address, invoice_head, total_money, order_time, order_num, state_tv, time_tv;
+    TextView pay_time, pay_type;
     Button pay_money;
     LinearLayout detail_ll;
     BottomAnimDialog dialog;
@@ -162,6 +163,12 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
         order_time.setText(detail.OrderTime);
         order_num = (TextView) findViewById(R.id.order_num);
         order_num.setText(detail.OrderSN);
+
+        pay_time = (TextView) findViewById(R.id.pay_time);
+
+
+        pay_type = (TextView) findViewById(R.id.pay_type);
+
 
         detail_ll = (LinearLayout) findViewById(R.id.detail_ll);
         detail_ll.setOnClickListener(new View.OnClickListener() {

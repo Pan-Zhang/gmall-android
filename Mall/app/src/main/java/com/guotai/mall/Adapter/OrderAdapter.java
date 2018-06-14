@@ -145,20 +145,25 @@ public class OrderAdapter extends MyAdapter<OrderEx> implements View.OnClickList
 //                holdView.order_ll.setVisibility(View.GONE);
                 holdView.button1.setVisibility(View.INVISIBLE);
 
-                if(order.RefundStatus==1){
-                    holdView.button2.setVisibility(View.VISIBLE);
-                    holdView.button2.setText("撤销退款");
-                    holdView.button2.setTag(position);
-                    holdView.button2.setTag(R.id.tag_order, CANCEL_BACK);
+                if(order.IsRefund){
+                    if(order.RefundStatus==1){
+                        holdView.button2.setVisibility(View.VISIBLE);
+                        holdView.button2.setText("撤销退款");
+                        holdView.button2.setTag(position);
+                        holdView.button2.setTag(R.id.tag_order, CANCEL_BACK);
+                    }
+                    else if(order.RefundStatus==2){
+                        holdView.button2.setVisibility(View.INVISIBLE);
+                    }
+                    else if(order.RefundStatus==3){
+                        holdView.button2.setVisibility(View.VISIBLE);
+                        holdView.button2.setText("申请退款");
+                        holdView.button2.setTag(position);
+                        holdView.button2.setTag(R.id.tag_order, REQUEST_BACK);
+                    }
                 }
-                else if(order.RefundStatus==2){
+                else{
                     holdView.button2.setVisibility(View.INVISIBLE);
-                }
-                else if(order.RefundStatus==3){
-                    holdView.button2.setVisibility(View.VISIBLE);
-                    holdView.button2.setText("申请退款");
-                    holdView.button2.setTag(position);
-                    holdView.button2.setTag(R.id.tag_order, REQUEST_BACK);
                 }
 
                 holdView.button3.setVisibility(View.VISIBLE);
