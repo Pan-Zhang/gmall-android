@@ -114,6 +114,11 @@ public class BrowerActivity extends BaseActivity<BrowerPresent> implements IBrow
     public void refresh(List<CollectPro> list) {
         this.list = list;
         refreshLayout.setRefreshing(false);
+        if (list==null || list.size() == 0) {
+            no_collect.setVisibility(View.VISIBLE);
+        }else{
+            no_collect.setVisibility(View.INVISIBLE);
+        }
         collectionAdapter.update(list);
     }
 

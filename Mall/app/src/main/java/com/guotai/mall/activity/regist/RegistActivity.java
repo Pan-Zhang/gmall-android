@@ -102,15 +102,23 @@ public class RegistActivity extends BaseActivity<RegistPresent> implements IRegi
                 break;
 
             case R.id.submit:
-                if(TextUtils.isEmpty(telephone.getText().toString())
-                        || TextUtils.isEmpty(username.getText().toString())
-                        || TextUtils.isEmpty(password.getText().toString())
-                        || TextUtils.isEmpty(confirm_pass.getText().toString())
-                        || TextUtils.isEmpty(verify_code.getText().toString())){
-                    Common.showToastLong(R.string.str_ensure_all);
+                if(!Common.isMobile(telephone.getText().toString())){
+                    Common.showToastShort("请输入正确的手机号");
+                }
+                else if (TextUtils.isEmpty(username.getText().toString())){
+                    Common.showToastShort("请输入用户名");
+                }
+                else if(!Common.ispsd(password.getText().toString())){
+                    Common.showToastShort("密码必须为6～20位的字母和数字组合");
+                }
+                else if(TextUtils.isEmpty(confirm_pass.getText().toString())){
+                    Common.showToastShort("请输入确认密码");
                 }
                 else if(!password.getText().toString().equals(confirm_pass.getText().toString())){
                     Common.showToastShort("两次密码不一致");
+                }
+                else if(TextUtils.isEmpty(verify_code.getText().toString())){
+                    Common.showToastShort("请输入验证码");
                 }
                 else{
                     dialogUtils.showWaitDialog(RegistActivity.this, "正在注册");

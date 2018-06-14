@@ -32,6 +32,9 @@ public class BaseActivity<T extends IBasePresent> extends AppCompatActivity {
         if(MyApplication.getInstance().goCar==1){
             finish();
         }
+        if(MyApplication.getInstance().goHome){
+            finish();
+        }
     }
 
     @Override

@@ -32,6 +32,8 @@ import com.guotai.mall.model.Address;
 import com.guotai.mall.model.CarPro;
 import com.guotai.mall.model.ProductEx;
 import com.guotai.mall.uitl.Common;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -45,12 +47,11 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
 {
 
     LinearLayout no_product, have_product;
-    ListView car_lv;
+    PullToRefreshListView car_lv;
     CarAdapter carAdapter;
     List<CarPro> list, choose_list;
     CheckBox choose_all;
     TextView delete, pay;
-    SwipeRefreshLayout refreshLayout;
     BigDecimal all_money;
     int all_product, choose_product;
     Button make_order, collect, brower;
@@ -138,7 +139,7 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
             }
         });
 
-        car_lv = (ListView) rootView.findViewById(R.id.car_lv);
+        car_lv = (PullToRefreshListView) rootView.findViewById(R.id.car_lv);
         list = new ArrayList<CarPro>();
         carAdapter = new CarAdapter(getContext(), list);
         car_lv.setAdapter(carAdapter);
@@ -188,12 +189,6 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
         make_order = (Button) rootView.findViewById(R.id.make_order);
         make_order.setOnClickListener(this);
 
-        refreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh);
-        refreshLayout.setColorSchemeResources(R.color.colorWhite);
-        refreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
-        refreshLayout.setProgressBackgroundColor(R.color.colorApp);
-        refreshLayout.setProgressViewEndTarget(true, 200);
-
         return rootView;
     }
 
@@ -206,10 +201,15 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
         else{
             url = "api/ShopCart/GetShopCartList";
             url = url + "?idxPage=0&sizePage=0&UserID=" + Common.getUserID();
-            refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            car_lv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
                 @Override
-                public void onRefresh() {
+                public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
                     present.getData(getClass().getSimpleName(), url);
+                }
+
+                @Override
+                public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+
                 }
             });
         }
@@ -258,7 +258,7 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
 
     @Override
     public void refresh(List<CarPro> list) {
-        refreshLayout.setRefreshing(false);
+        car_lv.onRefreshComplete();
         if(list!=null){
             if(choose_list!=null){
                 for(int i=0; i<choose_list.size(); i++){

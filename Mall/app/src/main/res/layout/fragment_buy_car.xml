@@ -96,21 +96,13 @@
             android:layout_height="1dp"
             android:background="@color/colorLightGray"/>
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/refresh">
-
-            <ListView
+            <com.handmark.pulltorefresh.library.PullToRefreshListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorWhite"
                 android:divider="@color/colorLightGray"
                 android:dividerHeight="1dp"
                 android:id="@+id/car_lv"/>
-
-        </android.support.v4.widget.SwipeRefreshLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

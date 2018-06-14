@@ -232,6 +232,10 @@ public class MainActivity extends BaseActivity {
             bottom_tab.performItemClick(bottom_tab, 2, 2);
             MyApplication.getInstance().goCar = 0;
         }
+        if(MyApplication.getInstance().goHome){
+            bottom_tab.performItemClick(bottom_tab, 0, 0);
+            MyApplication.getInstance().goHome = false;
+        }
         tabGridAdapter.notifyDataSetChanged();
         super.onResume();
     }

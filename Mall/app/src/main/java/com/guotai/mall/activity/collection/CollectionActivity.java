@@ -109,7 +109,7 @@ public class CollectionActivity extends BaseActivity<CollectionPresent> implemen
     public void refresh(List<CollectPro> list) {
         this.list = list;
         refreshLayout.setRefreshing(false);
-        if (list.size() == 0) {
+        if (list==null || list.size() == 0) {
             no_collect.setVisibility(View.VISIBLE);
         }else{
             no_collect.setVisibility(View.INVISIBLE);

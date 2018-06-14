@@ -135,9 +135,6 @@ public class LoginActivity extends BaseActivity<LoginPresent> implements ILogina
                     if(TextUtils.isEmpty(password.getText().toString())){
                         Common.showToastLong(R.string.str_input_password);
                     }
-                    else if(TextUtils.isEmpty(telephone.getText().toString())){
-                        Common.showToastLong(R.string.str_input_telephone);
-                    }
                     else{
                         dialogUtils.showWaitDialog(LoginActivity.this, getResources().getString(R.string.str_logining));
                         present.Login(LoginActivity.this.getClass().getSimpleName(), telephone.getText().toString(), password.getText().toString(), 0);
@@ -145,10 +142,7 @@ public class LoginActivity extends BaseActivity<LoginPresent> implements ILogina
                 }
                 else{
                     if(TextUtils.isEmpty(password.getText().toString())){
-                        Common.showToastLong(R.string.str_input_password);
-                    }
-                    else if(TextUtils.isEmpty(telephone.getText().toString())){
-                        Common.showToastLong(R.string.str_input_telephone);
+                        Common.showToastLong("请输入验证码");
                     }
                     else{
                         dialogUtils.showWaitDialog(LoginActivity.this, getResources().getString(R.string.str_logining));

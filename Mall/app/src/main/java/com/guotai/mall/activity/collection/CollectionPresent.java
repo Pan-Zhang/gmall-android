@@ -35,6 +35,9 @@ public class CollectionPresent implements IBasePresent {
             @Override
             public void onFailure(Call call, String e) {
                 Common.showToastShort("获取收藏夹列表失败");
+                if(iCollectionactivity!=null){
+                    iCollectionactivity.refresh(null);
+                }
             }
 
             @Override

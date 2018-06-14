@@ -31,7 +31,10 @@ public class BrowerPresent implements IBasePresent {
         HttpFactory.getInstance().AsyncGet(url, new ResultBack() {
             @Override
             public void onFailure(Call call, String e) {
-
+                Common.showToastShort("获取阅览列表失败");
+                if(iBroweractivity!=null){
+                    iBroweractivity.refresh(null);
+                }
             }
 
             @Override

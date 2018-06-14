@@ -15,6 +15,7 @@ public class MyApplication extends Application {
     static MyApplication instance;
     public IWXAPI api;
     public int goCar;
+    public boolean goHome;
     public int number;
 
     @Override

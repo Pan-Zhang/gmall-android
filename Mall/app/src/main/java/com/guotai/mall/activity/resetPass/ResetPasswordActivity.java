@@ -93,6 +93,10 @@ public class ResetPasswordActivity extends BaseActivity<ResetPassPresent> implem
                     Common.showToastShort("请填写新密码");
                     return;
                 }
+                if(!Common.ispsd(newPw.getText().toString())){
+                    Common.showToastShort("密码必须为6～20位的字母和数字组合");
+                    return;
+                }
                 if(TextUtils.isEmpty(verify_code.getText().toString())){
                     Common.showToastShort("请输入验证码");
                     return;

@@ -85,6 +85,10 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!Common.isMobile(telphone.getText().toString())){
+                    Common.showToastShort("请输入正确的联系方式");
+                    return;
+                }
                 if(province.getText().toString().equals("请选择省份") || city.getText().toString().equals("请选择城市") || county.getText().toString().equals("请选择区县")){
                     Common.showToastShort("省市区信息不能为空！");
                     return;

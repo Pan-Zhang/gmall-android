@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,12 +54,7 @@ public class SearchActivity extends BaseActivity<SearchPresent> implements ISear
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(keyword.getText().toString().length()==0){
-                    Common.showToastShort("请输入关键字");
-                    return;
-                }
-                dialogUtils.showWaitDialog(SearchActivity.this);
-                present.search("api/Product/GetProductList?idxPage=1&sizePage=20&searchWord="+keyword.getText().toString(), SearchActivity.this.getClass().getSimpleName());
+                search();
             }
         });
         back = (ImageView) findViewById(R.id.back);
@@ -87,6 +84,15 @@ public class SearchActivity extends BaseActivity<SearchPresent> implements ISear
                 }
             }
         });
+        keyword.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    search();
+                }
+                return false;
+            }
+        });
         initLabel();
 
         result_list = (ListView) findViewById(R.id.result_list);
@@ -106,6 +112,19 @@ public class SearchActivity extends BaseActivity<SearchPresent> implements ISear
 
     }
 
+    private void search(){
+        if(keyword.getText().toString().length()==0){
+            Common.showToastShort("请输入关键字");
+            return;
+        }
+        // 先隐藏键盘
+        ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow(SearchActivity.this.getCurrentFocus()
+                        .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        dialogUtils.showWaitDialog(SearchActivity.this);
+        present.search("api/Product/GetProductList?idxPage=1&sizePage=20&searchWord="+keyword.getText().toString(), SearchActivity.this.getClass().getSimpleName());
+    }
+
     // 初始化标签
     private void initLabel() {
         for (int i = 0; i < history_lb.length; i++) {
@@ -119,6 +138,7 @@ public class SearchActivity extends BaseActivity<SearchPresent> implements ISear
                 public void onClick(View v) {
                     //加入搜索历史纪录记录
                     keyword.setText(str);
+                    search();
                 }
             });
             history.addView(tv);
@@ -135,6 +155,7 @@ public class SearchActivity extends BaseActivity<SearchPresent> implements ISear
                 public void onClick(View v) {
                     //加入搜索历史纪录记录
                     keyword.setText(str);
+                    search();
                 }
             });
             hot.addView(tv);
@@ -145,6 +166,9 @@ public class SearchActivity extends BaseActivity<SearchPresent> implements ISear
     public void searchSuccess(List<ProductEx> list, boolean success) {
         dialogUtils.disMiss();
         this.list = list;
+        if(list==null || list.size()==0){
+            Common.showToastShort("未搜到相关结果");
+        }
         if(success){
             productAdapter.update(list);
             keyword_ll.setVisibility(View.GONE);

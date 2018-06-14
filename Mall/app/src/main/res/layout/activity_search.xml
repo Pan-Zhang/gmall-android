@@ -39,12 +39,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="@color/colorLocationText"
+                android:singleLine="true"
                 android:layout_marginLeft="8dp"
                 android:padding="3dp"
                 android:textSize="16sp"
                 android:id="@+id/keyword"
                 android:textColor="@color/colorTextGray"
                 android:background="@null"
+                android:imeOptions="actionSearch"
                 android:hint="请输入要搜索的商品"/>
 
         </LinearLayout>
@@ -74,6 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null"
+            android:background="@color/colorWhite"
             android:id="@+id/result_list"/>
 
         <LinearLayout

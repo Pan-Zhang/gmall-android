@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.guotai.mall.MyApplication;
 import com.guotai.mall.R;
 import com.guotai.mall.activity.orderDetail.OrderDetailActivity;
 import com.guotai.mall.base.BaseActivity;
@@ -73,6 +74,7 @@ public class PayedActivity extends BaseActivity<PayedPresent> implements View.On
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.go_shop:
+                MyApplication.getInstance().goHome = true;
                 finish();
                 break;
 
