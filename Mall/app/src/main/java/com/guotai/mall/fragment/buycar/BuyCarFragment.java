@@ -143,6 +143,17 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
         list = new ArrayList<CarPro>();
         carAdapter = new CarAdapter(getContext(), list);
         car_lv.setAdapter(carAdapter);
+        car_lv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                present.getData(getClass().getSimpleName(), url);
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+
+            }
+        });
 
         carAdapter.setOnClick(new CarAdapter.OnClick() {
             @Override
@@ -189,6 +200,10 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
         make_order = (Button) rootView.findViewById(R.id.make_order);
         make_order.setOnClickListener(this);
 
+        url = "api/ShopCart/GetShopCartList";
+        url = url + "?idxPage=0&sizePage=0&UserID=" + Common.getUserID();
+        present.getData(getClass().getSimpleName(), url);
+
         return rootView;
     }
 
@@ -199,19 +214,7 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
             calcute();
         }
         else{
-            url = "api/ShopCart/GetShopCartList";
-            url = url + "?idxPage=0&sizePage=0&UserID=" + Common.getUserID();
-            car_lv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
-                @Override
-                public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-                    present.getData(getClass().getSimpleName(), url);
-                }
-
-                @Override
-                public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-
-                }
-            });
+            car_lv.setRefreshing(true);
         }
 
     }
