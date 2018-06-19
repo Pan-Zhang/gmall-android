@@ -3,6 +3,7 @@ package com.guotai.mall.activity.regist;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,8 @@ public class RegistActivity extends BaseActivity<RegistPresent> implements IRegi
     private static final int GET_CODE = 0;
     EditText telephone, username, password, confirm_pass, verify_code;
     Button getCode, submit;
+    ImageView isHidepwd, isHidepwd1;
+    Boolean isHide=true, isHide1=true;
     int seconds;
     Handler handler = new Handler(new Handler.Callback() {
         @Override
@@ -61,6 +64,11 @@ public class RegistActivity extends BaseActivity<RegistPresent> implements IRegi
         password = (EditText) findViewById(R.id.password);
         confirm_pass = (EditText) findViewById(R.id.confirm_pass);
         verify_code = (EditText) findViewById(R.id.verify_code);
+
+        isHidepwd = (ImageView) findViewById(R.id.isHidepwd);
+        isHidepwd.setOnClickListener(this);
+        isHidepwd1 = (ImageView) findViewById(R.id.isHidepwd1);
+        isHidepwd1.setOnClickListener(this);
 
         getCode = (Button) findViewById(R.id.getCode);
         getCode.setOnClickListener(this);
@@ -123,6 +131,32 @@ public class RegistActivity extends BaseActivity<RegistPresent> implements IRegi
                 else{
                     dialogUtils.showWaitDialog(RegistActivity.this, "正在注册");
                     present.Login(RegistActivity.this.getClass().getSimpleName(), username.getText().toString(), password.getText().toString(), telephone.getText().toString(), verify_code.getText().toString());
+                }
+                break;
+
+            case R.id.isHidepwd:
+                if(isHide){
+                    isHidepwd.setBackgroundResource(R.mipmap.seepwd);
+                    password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    isHide = false;
+                }
+                else{
+                    isHidepwd.setBackgroundResource(R.mipmap.hidepwd);
+                    password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
+                    isHide = true;
+                }
+                break;
+
+            case R.id.isHidepwd1:
+                if(isHide1){
+                    isHidepwd1.setBackgroundResource(R.mipmap.seepwd);
+                    confirm_pass.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    isHide1 = false;
+                }
+                else{
+                    isHidepwd1.setBackgroundResource(R.mipmap.hidepwd);
+                    confirm_pass.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
+                    isHide1 = true;
                 }
                 break;
         }

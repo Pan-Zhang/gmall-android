@@ -27,4 +27,5 @@ public interface IMyOrderfragment {
     void getAfterSaleDetailRes(boolean succ, AfterSale afterSale);
     void gotoDetail(ProductEx orderDetail);
     void cancelBack(boolean success, String mess);
+    void gotoBuycar(boolean success);
 }

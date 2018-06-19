@@ -255,6 +255,24 @@ public class MyOrderPresent implements IBasePresent {
         }, tag);
     }
 
+    public void buyAgain(String url, Map<String, String> param, String tag){
+        HttpFactory.getInstance().AsyncPost(url, param, new ResultBack() {
+            @Override
+            public void onFailure(Call call, String e) {
+                if(iMyOrderfragment!=null){
+                    iMyOrderfragment.gotoBuycar(false);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, String response) {
+                if(iMyOrderfragment!=null){
+                    iMyOrderfragment.gotoBuycar(true);
+                }
+            }
+        }, tag);
+    }
+
     @Override
     public void destroy() {
         iMyOrderfragment = null;

@@ -72,30 +72,64 @@
             android:layout_height="1dp"
             android:background="@color/colorAppBg"/>
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="请输入密码"
-            android:padding="5dp"
-            android:id="@+id/password"
-            android:textColor="@color/colorProduct"
-            android:textColorHint="@color/colorLineGray"
-            android:background="@null"/>
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="请输入密码"
+                android:padding="5dp"
+                android:id="@+id/password"
+                android:inputType="textPassword"
+                android:textColor="@color/colorProduct"
+                android:textColorHint="@color/colorLineGray"
+                android:background="@null"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:id="@+id/isHidepwd"
+                android:background="@mipmap/hidepwd"/>
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/colorAppBg"/>
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="再次确认密码"
-            android:padding="5dp"
-            android:id="@+id/confirm_pass"
-            android:textColor="@color/colorProduct"
-            android:textColorHint="@color/colorLineGray"
-            android:background="@null"/>
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="再次确认密码"
+                android:padding="5dp"
+                android:id="@+id/confirm_pass"
+                android:inputType="textPassword"
+                android:textColor="@color/colorProduct"
+                android:textColorHint="@color/colorLineGray"
+                android:background="@null"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:id="@+id/isHidepwd1"
+                android:background="@mipmap/hidepwd"/>
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

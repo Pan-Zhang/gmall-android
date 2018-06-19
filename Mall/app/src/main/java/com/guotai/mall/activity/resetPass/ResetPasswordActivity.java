@@ -3,6 +3,7 @@ package com.guotai.mall.activity.resetPass;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,8 @@ public class ResetPasswordActivity extends BaseActivity<ResetPassPresent> implem
 
     Button submit, getCode;
     EditText phonNum, newPw, verify_code;
+    ImageView isHidepwd1;
+    Boolean isHide = true;
     int seconds;
     private static final int GET_CODE = 0;
     Handler handler = new Handler(new Handler.Callback() {
@@ -65,6 +68,8 @@ public class ResetPasswordActivity extends BaseActivity<ResetPassPresent> implem
         getCode.setOnClickListener(this);
         phonNum = (EditText) findViewById(R.id.phoneNum);
         newPw = (EditText) findViewById(R.id.newPw);
+        isHidepwd1 = (ImageView) findViewById(R.id.isHidepwd1);
+        isHidepwd1.setOnClickListener(this);
         verify_code = (EditText) findViewById(R.id.verify_code);
     }
 
@@ -84,6 +89,20 @@ public class ResetPasswordActivity extends BaseActivity<ResetPassPresent> implem
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+
+            case R.id.isHidepwd1:
+                if(isHide){
+                    newPw.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    isHidepwd1.setBackgroundResource(R.mipmap.seepwd);
+                    isHide = false;
+                }
+                else{
+                    newPw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
+                    isHidepwd1.setBackgroundResource(R.mipmap.hidepwd);
+                    isHide = true;
+                }
+                break;
+
             case R.id.submit:
                 if(TextUtils.isEmpty(phonNum.getText().toString())){
                     Common.showToastShort("电话号码不能为空");

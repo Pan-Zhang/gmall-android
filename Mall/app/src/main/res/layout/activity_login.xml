@@ -117,15 +117,25 @@
                 android:layout_weight="1"
                 android:textColorHint="@color/colorLineGray"
                 android:paddingLeft="5dp"
+                android:inputType="textPassword"
                 android:id="@+id/password"
                 android:textColor="@color/colorProduct"
                 android:hint="请输入密码"
                 android:background="@null"/>
 
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:id="@+id/isHidepwd"
+                android:background="@mipmap/hidepwd"/>
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:text="获取验证码"
+                android:visibility="gone"
                 android:id="@+id/get_sms"
                 android:textColor="@color/colorLocationText"
                 android:background="@null"/>

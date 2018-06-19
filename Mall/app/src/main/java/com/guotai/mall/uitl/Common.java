@@ -135,6 +135,11 @@ public class Common {
         return result;
     }
 
+    public static String ObjectToJson(Object object){
+        Gson gs = new Gson();
+        return gs.toJson(object);
+    }
+
     public static void saveToken(String token){
         SharedPreferencesUtils.setParam(MyApplication.getInstance(), "token", token);
     }

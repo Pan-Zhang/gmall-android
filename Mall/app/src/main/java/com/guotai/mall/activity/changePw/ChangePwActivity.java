@@ -1,6 +1,7 @@
 package com.guotai.mall.activity.changePw;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,8 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresent> implements I
 
     EditText old_pw, new_pw;
     Button submit_btn;
+    ImageView isHidepwd, isHidepwd1;
+    Boolean isHide=true, isHide1=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,10 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresent> implements I
         initTitle();
         old_pw = (EditText) findViewById(R.id.old_pw);
         new_pw = (EditText) findViewById(R.id.new_pw);
+        isHidepwd = (ImageView) findViewById(R.id.isHidepwd);
+        isHidepwd.setOnClickListener(this);
+        isHidepwd1 = (ImageView) findViewById(R.id.isHidepwd1);
+        isHidepwd1.setOnClickListener(this);
         submit_btn = (Button) findViewById(R.id.submit_btn);
         submit_btn.setOnClickListener(this);
 
@@ -65,19 +72,49 @@ public class ChangePwActivity extends BaseActivity<ChangePwPresent> implements I
 
     @Override
     public void onClick(View v) {
-        if(TextUtils.isEmpty(old_pw.getText().toString())){
-            Common.showToastShort("请输入原始密码");
-            return;
+        switch (v.getId()){
+            case R.id.isHidepwd:
+                if(isHide){
+                    isHidepwd.setBackgroundResource(R.mipmap.seepwd);
+                    old_pw.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    isHide = false;
+                }
+                else{
+                    isHidepwd.setBackgroundResource(R.mipmap.hidepwd);
+                    old_pw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
+                    isHide = true;
+                }
+                break;
+
+            case R.id.isHidepwd1:
+                if(isHide1){
+                    isHidepwd1.setBackgroundResource(R.mipmap.seepwd);
+                    new_pw.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    isHide1 = false;
+                }
+                else{
+                    isHidepwd1.setBackgroundResource(R.mipmap.hidepwd);
+                    new_pw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
+                    isHide1 = true;
+                }
+                break;
+
+            case R.id.submit_btn:
+                if(TextUtils.isEmpty(old_pw.getText().toString())){
+                    Common.showToastShort("请输入原始密码");
+                    return;
+                }
+                if(TextUtils.isEmpty(new_pw.getText().toString())){
+                    Common.showToastShort("请输入新密码");
+                    return;
+                }
+                dialogUtils.showWaitDialog(this);
+                Map<String, String> map = new HashMap<>();
+                map.put("UserID", Common.getUserID());
+                map.put("oldPassword", Common.md5(old_pw.getText().toString()));
+                map.put("newPassword", Common.md5(new_pw.getText().toString()));
+                present.changePw("api/Users/ModifyPassword", map, getClass().getSimpleName());
+                break;
         }
-        if(TextUtils.isEmpty(new_pw.getText().toString())){
-            Common.showToastShort("请输入新密码");
-            return;
-        }
-        dialogUtils.showWaitDialog(this);
-        Map<String, String> map = new HashMap<>();
-        map.put("UserID", Common.getUserID());
-        map.put("oldPassword", Common.md5(old_pw.getText().toString()));
-        map.put("newPassword", Common.md5(new_pw.getText().toString()));
-        present.changePw("api/Users/ModifyPassword", map, getClass().getSimpleName());
     }
 }

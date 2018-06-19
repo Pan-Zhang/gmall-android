@@ -6,27 +6,64 @@
 
     <include layout="@layout/layout_title"/>
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:padding="5dp"
-        android:textColor="@color/colorTextBlack"
-        android:background="@drawable/text_bg_gray"
-        android:textColorHint="@color/colorGray"
-        android:hint="@string/str_old_pw"
-        android:id="@+id/old_pw"/>
+        android:gravity="center_vertical"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
 
-    <EditText
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="5dp"
+            android:inputType="textPassword"
+            android:textColor="@color/colorTextBlack"
+            android:background="@drawable/text_bg_gray"
+            android:textColorHint="@color/colorGray"
+            android:hint="@string/str_old_pw"
+            android:id="@+id/old_pw"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:id="@+id/isHidepwd"
+            android:background="@mipmap/hidepwd"/>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:padding="5dp"
-        android:textColor="@color/colorTextBlack"
-        android:background="@drawable/text_bg_gray"
-        android:textColorHint="@color/colorGray"
-        android:hint="@string/str_new_pw"
-        android:id="@+id/new_pw"/>
+        android:gravity="center_vertical"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="5dp"
+            android:inputType="textPassword"
+            android:textColor="@color/colorTextBlack"
+            android:background="@drawable/text_bg_gray"
+            android:textColorHint="@color/colorGray"
+            android:hint="@string/str_new_pw"
+            android:id="@+id/new_pw"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:id="@+id/isHidepwd1"
+            android:background="@mipmap/hidepwd"/>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

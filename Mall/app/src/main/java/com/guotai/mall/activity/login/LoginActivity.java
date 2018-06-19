@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -28,8 +29,10 @@ public class LoginActivity extends BaseActivity<LoginPresent> implements ILogina
     TextView regist, forget;
     EditText telephone, password;
     SegmentLayout segmentLayout;
+    ImageView isHidepwd;
     int position;
     int seconds;
+    boolean isHidePwd=true;
     private static final int GET_CODE = 0;
 
     Handler handler = new Handler(new Handler.Callback() {
@@ -77,12 +80,22 @@ public class LoginActivity extends BaseActivity<LoginPresent> implements ILogina
                 switch (index){
                     case 0:
                         password.setHint("请输入密码");
-                        get_sms.setVisibility(View.INVISIBLE);
+                        get_sms.setVisibility(View.GONE);
+                        if(isHidePwd){
+                            password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);//设置密码不可见，如果只设置TYPE_TEXT_VARIATION_PASSWORD则无效
+                        }
+                        else{
+                            password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                        }
+
+                        isHidepwd.setVisibility(View.VISIBLE);
                         break;
 
                     case 1:
                         password.setHint("请输入验证码");
+                        password.setInputType(InputType.TYPE_CLASS_NUMBER);
                         get_sms.setVisibility(View.VISIBLE);
+                        isHidepwd.setVisibility(View.GONE);
                         break;
                 }
             }
@@ -90,8 +103,11 @@ public class LoginActivity extends BaseActivity<LoginPresent> implements ILogina
 
         submit = (Button) findViewById(R.id.submit);
         get_sms = (Button) findViewById(R.id.get_sms);
-        get_sms.setVisibility(View.INVISIBLE);
+        get_sms.setVisibility(View.GONE);
         get_sms.setOnClickListener(this);
+
+        isHidepwd = (ImageView) findViewById(R.id.isHidepwd);
+        isHidepwd.setOnClickListener(this);
 
         regist = (TextView) findViewById(R.id.regist);
         forget = (TextView) findViewById(R.id.forget);
@@ -171,6 +187,19 @@ public class LoginActivity extends BaseActivity<LoginPresent> implements ILogina
 
             case R.id.forget:
                 startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
+                break;
+
+            case R.id.isHidepwd:
+                if(isHidePwd){
+                    isHidepwd.setBackgroundResource(R.mipmap.seepwd);
+                    password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    isHidePwd = false;
+                }
+                else{
+                    isHidepwd.setBackgroundResource(R.mipmap.hidepwd);
+                    password.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);
+                    isHidePwd = true;
+                }
                 break;
         }
     }

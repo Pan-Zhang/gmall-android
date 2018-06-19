@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.guotai.mall.Adapter.OrderAdapter;
+import com.guotai.mall.MyApplication;
 import com.guotai.mall.R;
 import com.guotai.mall.activity.makeOrder.MakeOrderActivity;
 import com.guotai.mall.activity.orderDetail.OrderDetailActivity;
@@ -125,7 +126,11 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
                 break;
 
             case OrderAdapter.BUY_AGAIN:
-                present.getAddress("api/UserReceiver/GetUserReceiverList?UserID="+Common.getUserID(), position, MyOrderFragment.this.getClass().getSimpleName());
+//                present.getAddress("api/UserReceiver/GetUserReceiverList?UserID="+Common.getUserID(), position, MyOrderFragment.this.getClass().getSimpleName());
+                Map<String, String> map5 = new HashMap<String, String>();
+                map5.put("UserID", Common.getUserID());
+                map5.put("ShopCartList", Common.ObjectToJson(list.get(position).OrderDetailList));
+                present.buyAgain("api/ShopCart/AddShopCarts", map5, getClass().getSimpleName());
                 break;
 
             case OrderAdapter.ENSURE_RECEIVE:
@@ -333,6 +338,18 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
         }
         else{
             Common.showToastShort(mess);
+        }
+    }
+
+    @Override
+    public void gotoBuycar(boolean success) {
+        if(success){
+            MyApplication.getInstance().goCar = 1;
+            getActivity().finish();
+            Common.showToastShort("已添加到购物车");
+        }
+        else{
+            Common.showToastShort("操作失败");
         }
     }
 
