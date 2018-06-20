@@ -6,17 +6,11 @@ import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import com.guotai.mall.Adapter.CityAdapter;
-import com.guotai.mall.Adapter.CountyAdapter;
-import com.guotai.mall.Adapter.ProvinceListAdapter;
 import com.guotai.mall.R;
 import com.guotai.mall.base.BaseActivity;
 import com.guotai.mall.model.Address;
@@ -24,8 +18,11 @@ import com.guotai.mall.model.City;
 import com.guotai.mall.model.County;
 import com.guotai.mall.model.Province;
 import com.guotai.mall.uitl.Common;
+import com.guotai.mall.widget.FullDialog;
+import com.guotai.mall.widget.PickerView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -43,12 +40,16 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
     public List<Province> province_list;
     public List<City> city_list;
     public List<County> county_list;
-    public ProvinceListAdapter provinceListAdapter;
-    public CityAdapter cityAdapter;
-    public CountyAdapter countyAdapter;
+    public List<String> provins, cities, districts;
     public Province current_province;
     public City current_city;
     public County current_county;
+    private Dialog dialog;
+    PickerView provincePicker, cityPicker, districtPicker;
+    County tem_county = null;
+    Province tem_province=null;
+    City tem_city=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,6 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
         present = new AddAddressPresent(this);
 
         initTitle();
-        present.loadProvince("api/UserReceiver/GetProvinceList", getClass().getSimpleName());
         name = (EditText) findViewById(R.id.name);
         telphone = (EditText) findViewById(R.id.telephone);
         detail = (EditText) findViewById(R.id.detail);
@@ -69,13 +69,14 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
         county.setOnClickListener(this);
         submit = (Button) findViewById(R.id.submit);
         isDefault = (CheckBox) findViewById(R.id.isDefault);
+        initPicker();
         if(address!=null){
             name.setText(address.ReceiverName);
             province.setText(address.ProvinceName);
             city.setText(address.CityName);
-            present.loadCity("api/UserReceiver/GetCityList?ProvinceID=" + address.ProvinceID, AddAddressActivty.this.getClass().getSimpleName());
+//            present.loadCity("api/UserReceiver/GetCityList?ProvinceID=" + address.ProvinceID, AddAddressActivty.this.getClass().getSimpleName());
             county.setText(address.DistrictName);
-            present.loadCounty("api/UserReceiver/GeDistrictList?CityID=" + address.CityID, AddAddressActivty.this.getClass().getSimpleName());
+//            present.loadCounty("api/UserReceiver/GeDistrictList?CityID=" + address.CityID, AddAddressActivty.this.getClass().getSimpleName());
             telphone.setText(address.ReceiverMobile);
             detail.setText(address.ReceiverAddress);
             if(address.IsDefault){
@@ -169,6 +170,7 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
                 }
             }
         });
+        present.loadProvince("api/UserReceiver/GetProvinceList", getClass().getSimpleName());
     }
 
     private void initTitle() {
@@ -195,66 +197,85 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
         address = null;
     }
 
+    public void initPicker(){
+        dialog = new FullDialog(AddAddressActivty.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.layout_choose_address);
+        provincePicker = (PickerView) dialog.findViewById(R.id.province);
+        provincePicker.setOnSelectListener(new PickerView.onSelectListener() {
+            @Override
+            public void onSelect(String text) {
+                for(Province province:province_list){
+                    if(province.ProvinceName.equals(text)){
+                        tem_province = province;
+                    }
+                }
+                if(tem_province!=null)
+                present.loadCity("api/UserReceiver/GetCityList?ProvinceID=" + tem_province.ProvinceID, AddAddressActivty.this.getClass().getSimpleName());
+            }
+        });
+        cityPicker = (PickerView) dialog.findViewById(R.id.city);
+        cityPicker.setOnSelectListener(new PickerView.onSelectListener() {
+            @Override
+            public void onSelect(String text) {
+                for(City city:city_list){
+                    if(city.CityName.equals(text)){
+                        tem_city = city;
+                    }
+                }
+                if(tem_city!=null)
+                present.loadCounty("api/UserReceiver/GeDistrictList?CityID=" + tem_city.CityID, AddAddressActivty.this.getClass().getSimpleName());
+            }
+        });
+        districtPicker = (PickerView) dialog.findViewById(R.id.district);
+        districtPicker.setOnSelectListener(new PickerView.onSelectListener() {
+            @Override
+            public void onSelect(String text) {
+                for(County county:county_list){
+                    if(county.DistrictName.equals(text)){
+                        tem_county = county;
+                    }
+                }
+            }
+        });
+        TextView cancel_btn = (TextView) dialog.findViewById(R.id.cancel_btn);
+        cancel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        TextView ensure_btn = (TextView) dialog.findViewById(R.id.ensure_btn);
+        ensure_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                current_county = tem_county;
+                current_city = tem_city;
+                current_province = tem_province;
+                province.setText(current_province.ProvinceName);
+                city.setText(current_city.CityName);
+                county.setText(current_county.DistrictName);
+                dialog.dismiss();
+            }
+        });
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.province:
-                final Dialog dialog = new Dialog(AddAddressActivty.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.layout_choose_address);
-                ListView listView = (ListView) dialog.findViewById(R.id.address_list);
-                provinceListAdapter = new ProvinceListAdapter(AddAddressActivty.this, province_list);
-                listView.setAdapter(provinceListAdapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        current_province = province_list.get(position);
-                        province.setText(current_province.ProvinceName);
-                        city.setText("请选择城市");
-                        county.setText("请选择区县");
-                        present.loadCity("api/UserReceiver/GetCityList?ProvinceID=" + current_province.ProvinceID, AddAddressActivty.this.getClass().getSimpleName());
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-                break;
-
             case R.id.city:
-                final Dialog dialog1 = new Dialog(AddAddressActivty.this);
-                dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog1.setContentView(R.layout.layout_choose_address);
-                ListView listView1 = (ListView) dialog1.findViewById(R.id.address_list);
-                cityAdapter = new CityAdapter(AddAddressActivty.this, city_list);
-                listView1.setAdapter(cityAdapter);
-                listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        current_city = city_list.get(position);
-                        city.setText(current_city.CityName);
-                        county.setText("请选择区县");
-                        present.loadCounty("api/UserReceiver/GeDistrictList?CityID=" + current_city.CityID, AddAddressActivty.this.getClass().getSimpleName());
-                        dialog1.dismiss();
-                    }
-                });
-                dialog1.show();
-                break;
-
             case R.id.county:
-                final Dialog dialog2 = new Dialog(AddAddressActivty.this);
-                dialog2.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog2.setContentView(R.layout.layout_choose_address);
-                ListView listView2 = (ListView) dialog2.findViewById(R.id.address_list);
-                countyAdapter = new CountyAdapter(AddAddressActivty.this, county_list);
-                listView2.setAdapter(countyAdapter);
-                listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        current_county = county_list.get(position);
-                        county.setText(current_county.DistrictName);
-                        dialog2.dismiss();
-                    }
-                });
-                dialog2.show();
+                if(provins!=null){
+                    provincePicker.setData(provins);
+                }
+                if(cities!=null){
+                    cityPicker.setData(cities);
+                }
+                if(districts!=null){
+                    districtPicker.setData(districts);
+                }
+                dialog.show();
                 break;
         }
     }
@@ -263,13 +284,32 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
     public void refreshProvince(List<Province> list) {
         if(list!=null){
             province_list = list;
+            if(provins==null){
+                provins = new ArrayList<>();
+            }
+            else{
+                provins.clear();
+            }
+            for(int i=0; i<province_list.size(); i++){
+                provins.add(province_list.get(i).ProvinceName);
+            }
+            provincePicker.setData(provins);
         }
     }
 
     @Override
     public void refreshCity(List<City> list) {
-        if(list!=null){
+        if(list!=null) {
             city_list = list;
+            if (cities == null) {
+                cities = new ArrayList<>();
+            } else {
+                cities.clear();
+            }
+            for (int i = 0; i < city_list.size(); i++) {
+                cities.add(city_list.get(i).CityName);
+            }
+            cityPicker.setData(cities);
         }
     }
 
@@ -277,6 +317,15 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
     public void refreshCounty(List<County> list) {
         if(list!=null){
             county_list = list;
+            if (districts == null) {
+                districts = new ArrayList<>();
+            } else {
+                districts.clear();
+            }
+            for (int i = 0; i < county_list.size(); i++) {
+                districts.add(county_list.get(i).DistrictName);
+            }
+            districtPicker.setData(districts);
         }
     }
 

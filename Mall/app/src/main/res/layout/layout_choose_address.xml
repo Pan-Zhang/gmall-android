@@ -4,9 +4,62 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite">
 
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/address_list"/>
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorApp"
+            android:id="@+id/cancel_btn"
+            android:text="取消"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextBlack"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:text="选择地址信息"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorApp"
+            android:id="@+id/ensure_btn"
+            android:text="确定"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12dp">
+
+        <com.guotai.mall.widget.PickerView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="165dp"
+            android:id="@+id/province"/>
+
+        <com.guotai.mall.widget.PickerView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="165dp"
+            android:layout_margin="3dp"
+            android:id="@+id/city"/>
+
+        <com.guotai.mall.widget.PickerView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="165dp"
+            android:id="@+id/district"/>
+
+    </LinearLayout>
 
 </LinearLayout>
