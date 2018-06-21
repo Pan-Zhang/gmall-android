@@ -38,7 +38,7 @@ public class PickerView extends View
     /**
      * 选中的位置，这个位置是mDataList的中心位置，一直不变
      */
-    private int mCurrentSelected;
+    private int mCurrentSelected = 0;
     private Paint mPaint;
 
     private float mMaxTextSize = 20;
@@ -100,7 +100,8 @@ public class PickerView extends View
         mSelectListener = listener;
     }
 
-    private void performSelect()
+    //主动触发回调，可以获取当前显示的内容
+    public void performSelect()
     {
         if (mSelectListener != null)
             mSelectListener.onSelect(mDataList.get(mCurrentSelected));
@@ -109,14 +110,15 @@ public class PickerView extends View
     public void setData(List<String> datas)
     {
         mDataList = datas;
-        mCurrentSelected = datas.size() / 2;
+//        mCurrentSelected = datas.size() / 2;
         invalidate();
     }
 
-    public void setSelected(int selected)
-    {
-        mCurrentSelected = selected;
-    }
+    //设置起始点点
+//    public void setSelected(int selected)
+//    {
+//        mCurrentSelected = selected;
+//    }
 
     private void moveHeadToTail()
     {
@@ -179,13 +181,19 @@ public class PickerView extends View
 
         canvas.drawText(mDataList.get(mCurrentSelected), x, baseline, mPaint);
         // 绘制上方data
-        for (int i = 1; (mCurrentSelected - i) >= 0; i++)
-        {
+//        for (int i = 1; (mCurrentSelected - i) >= 0; i++)
+//        {
+//            drawOtherText(canvas, i, -1);
+//        }
+        for(int i=mDataList.size()-1; i>(mDataList.size()/2); i--){
             drawOtherText(canvas, i, -1);
         }
         // 绘制下方data
-        for (int i = 1; (mCurrentSelected + i) < mDataList.size(); i++)
-        {
+//        for (int i = 1; (mCurrentSelected + i) < mDataList.size(); i++)
+//        {
+//            drawOtherText(canvas, i, 1);
+//        }
+        for(int i=1; i<(mDataList.size()/2); i++){
             drawOtherText(canvas, i, 1);
         }
 
@@ -200,8 +208,15 @@ public class PickerView extends View
      */
     private void drawOtherText(Canvas canvas, int position, int type)
     {
-        float d = (float) (MARGIN_ALPHA * mMinTextSize * position + type
-                * mMoveLen);
+        float d;
+        if(type==1){
+            d = (float) (MARGIN_ALPHA * mMinTextSize * position + type
+                    * mMoveLen);
+        }
+        else {
+            d = (float) (MARGIN_ALPHA * mMinTextSize * (mDataList.size()-position) + type
+                    * mMoveLen);
+        }
         float scale = parabola(mViewHeight / 4.0f, d);
         float size = (mMaxTextSize - mMinTextSize) * scale + mMinTextSize;
         mPaint.setTextSize(mMinTextSize);
@@ -209,7 +224,7 @@ public class PickerView extends View
         float y = (float) (mViewHeight / 2.0 + type * d);
         FontMetricsInt fmi = mPaint.getFontMetricsInt();
         float baseline = (float) (y - (fmi.bottom / 2.0 + fmi.top / 2.0));
-        canvas.drawText(mDataList.get(mCurrentSelected + type * position),
+        canvas.drawText(mDataList.get(position),
                 (float) (mViewWidth / 2.0), baseline, mPaint);
     }
 

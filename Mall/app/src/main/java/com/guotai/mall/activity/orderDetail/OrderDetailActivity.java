@@ -59,7 +59,7 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
     ProductView2 products;
     public static OrderEx detail;
     public static Logistics logistics;
-    TextView name_tel, receive_address, invoice_head, total_money, order_time, order_num, state_tv, time_tv;
+    TextView name_tel, receive_address, invoice_type, invoice_head, remark, total_money, order_time, order_num, state_tv, time_tv;
     TextView pay_time, pay_type;
     Button pay_money;
     LinearLayout detail_ll;
@@ -139,7 +139,25 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
             receive_address.setText(detail.ProvinceName + detail.CityName + detail.DistrictName + detail.ReceiverAddress);
         }
         invoice_head = (TextView) findViewById(R.id.invoice_head);
-        invoice_head.setText(detail.InvoiceName);
+
+        invoice_type = (TextView) findViewById(R.id.invoice_type);
+        if(detail.InvoiceFlag){
+            invoice_head.setText(detail.InvoiceName);
+            invoice_type.setText("纸质发票");
+        }
+        else{
+            invoice_head.setText("无");
+            invoice_type.setText("无");
+        }
+
+        remark = (TextView) findViewById(R.id.remark);
+        if(TextUtils.isEmpty(detail.Remark)){
+            remark.setText("无备注信息");
+        }
+        else{
+            remark.setText(detail.Remark);
+        }
+
         total_money = (TextView) findViewById(R.id.total_money);
         String str;
         if(detail.getTranportFee()==0){

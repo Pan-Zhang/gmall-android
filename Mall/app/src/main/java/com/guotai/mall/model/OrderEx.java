@@ -37,7 +37,7 @@ public class OrderEx extends Order {
     public String SendHandler;
     public String SendTime;
     public String ConfirmReceiptTime;
-    public String InvoiceFlag;
+    public boolean InvoiceFlag;
     public String InvoiceName;
     public String DeleteTime;
     public String IsDelete;

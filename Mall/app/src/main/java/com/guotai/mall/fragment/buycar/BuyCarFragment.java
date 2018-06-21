@@ -230,7 +230,7 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
         else{
             choose_list = new ArrayList<>();
         }
-        all_money = new BigDecimal("0");;
+        all_money = new BigDecimal("0");
         choose_product = 0;
         all_product = 0;
         for(int i=0; i<list.size(); i++){
@@ -244,7 +244,12 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
             }
             all_product = all_product + product.Qty;
         }
-        pay.setText("¥"+Common.get2Digital(all_money.floatValue()));
+        if(all_money.floatValue()==0){
+            pay.setText("¥0.00");
+        }
+        else{
+            pay.setText("¥"+Common.get2Digital(all_money.floatValue()));
+        }
         make_order.setText("去结算(" + String.valueOf(choose_product) + ")");
         if(list==null ||list.size()==0){
             no_product.setVisibility(View.VISIBLE);

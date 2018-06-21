@@ -77,6 +77,7 @@ public class LoginActivity extends BaseActivity<LoginPresent> implements ILogina
             @Override
             public void Click(int index) {
                 position = index;
+                password.setText("");
                 switch (index){
                     case 0:
                         password.setHint("请输入密码");

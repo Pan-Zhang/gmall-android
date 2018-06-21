@@ -34,7 +34,7 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
 
     TextView title;
     public static Address address;
-    public Button province, city, county, submit;
+    public Button province, submit;
     public EditText name, telphone, detail;
     public CheckBox isDefault;
     public List<Province> province_list;
@@ -63,19 +63,19 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
         detail = (EditText) findViewById(R.id.detail);
         province = (Button) findViewById(R.id.province);
         province.setOnClickListener(this);
-        city = (Button) findViewById(R.id.city);
-        city.setOnClickListener(this);
-        county = (Button) findViewById(R.id.county);
-        county.setOnClickListener(this);
+//        city = (Button) findViewById(R.id.city);
+//        city.setOnClickListener(this);
+//        county = (Button) findViewById(R.id.county);
+//        county.setOnClickListener(this);
         submit = (Button) findViewById(R.id.submit);
         isDefault = (CheckBox) findViewById(R.id.isDefault);
         initPicker();
         if(address!=null){
             name.setText(address.ReceiverName);
-            province.setText(address.ProvinceName);
-            city.setText(address.CityName);
+            province.setText(address.ProvinceName + " " + address.CityName + " " + address.DistrictName);
+//            city.setText(address.CityName);
 //            present.loadCity("api/UserReceiver/GetCityList?ProvinceID=" + address.ProvinceID, AddAddressActivty.this.getClass().getSimpleName());
-            county.setText(address.DistrictName);
+//            county.setText(address.DistrictName);
 //            present.loadCounty("api/UserReceiver/GeDistrictList?CityID=" + address.CityID, AddAddressActivty.this.getClass().getSimpleName());
             telphone.setText(address.ReceiverMobile);
             detail.setText(address.ReceiverAddress);
@@ -90,7 +90,7 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
                     Common.showToastShort("请输入正确的联系方式");
                     return;
                 }
-                if(province.getText().toString().equals("请选择省份") || city.getText().toString().equals("请选择城市") || county.getText().toString().equals("请选择区县")){
+                if(province.getText().toString().equals("选择区县市信息")){
                     Common.showToastShort("省市区信息不能为空！");
                     return;
                 }
@@ -249,12 +249,16 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
         ensure_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(tem_province==null || tem_county==null || tem_city==null){
+                    Common.showToastShort("请选择区县市信息");
+                    return;
+                }
                 current_county = tem_county;
                 current_city = tem_city;
                 current_province = tem_province;
-                province.setText(current_province.ProvinceName);
-                city.setText(current_city.CityName);
-                county.setText(current_county.DistrictName);
+                province.setText(current_province.ProvinceName + " " + current_city.CityName + " " + current_county.DistrictName);
+//                city.setText(current_city.CityName);
+//                county.setText(current_county.DistrictName);
                 dialog.dismiss();
             }
         });
@@ -264,8 +268,8 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.province:
-            case R.id.city:
-            case R.id.county:
+//            case R.id.city:
+//            case R.id.county:
                 if(provins!=null){
                     provincePicker.setData(provins);
                 }
@@ -294,6 +298,7 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
                 provins.add(province_list.get(i).ProvinceName);
             }
             provincePicker.setData(provins);
+            provincePicker.performSelect();
         }
     }
 
@@ -310,6 +315,7 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
                 cities.add(city_list.get(i).CityName);
             }
             cityPicker.setData(cities);
+            cityPicker.performSelect();
         }
     }
 
@@ -326,6 +332,7 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
                 districts.add(county_list.get(i).DistrictName);
             }
             districtPicker.setData(districts);
+            districtPicker.performSelect();
         }
     }
 

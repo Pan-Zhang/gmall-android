@@ -144,6 +144,10 @@ public class MakeOrderActivity extends BaseActivity<MakeOrderPresent> implements
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.make_order_btn:
+                if(!invoice.isChecked() && !TextUtils.isEmpty(invoice_head.getText())){
+                    Common.showToastShort("您填写了发票信息但是没有勾选发票复选框");
+                    return;
+                }
                 dialogUtils.showWaitDialog(MakeOrderActivity.this);
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("UserID", Common.getUserID());

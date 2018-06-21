@@ -251,6 +251,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="纸质发票"
+                    android:id="@+id/invoice_type"
                     android:paddingRight="20dp"
                     android:paddingTop="8dp"
                     android:paddingBottom="8dp"
@@ -288,6 +289,30 @@
                     android:textColor="@color/colorProduct"/>
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="备注信息"
+                android:background="@color/colorWhite"
+                android:paddingLeft="20dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorProduct"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:id="@+id/remark"
+                android:background="@color/colorWhite"
+                android:paddingLeft="20dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorTextGray"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
