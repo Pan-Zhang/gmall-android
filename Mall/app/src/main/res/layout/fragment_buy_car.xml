@@ -98,7 +98,8 @@
 
             <com.handmark.pulltorefresh.library.PullToRefreshListView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="@color/colorWhite"
                 android:divider="@color/colorLightGray"
                 android:dividerHeight="1dp"

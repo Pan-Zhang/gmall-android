@@ -56,7 +56,7 @@ public class RegistPresent implements IBasePresent {
             @Override
             public void onFailure(Call call, String e) {
                 if(iRegistactivity!=null){
-                    iRegistactivity.registSucc(false, "注册失败");
+                    iRegistactivity.registSucc(false, e);
                 }
             }
 
