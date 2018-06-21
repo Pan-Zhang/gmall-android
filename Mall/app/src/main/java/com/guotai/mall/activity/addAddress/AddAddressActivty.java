@@ -90,7 +90,7 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
                     Common.showToastShort("请输入正确的联系方式");
                     return;
                 }
-                if(province.getText().toString().equals("选择区县市信息")){
+                if(province.getText().toString().equals("选择省市区信息")){
                     Common.showToastShort("省市区信息不能为空！");
                     return;
                 }
@@ -250,7 +250,7 @@ public class AddAddressActivty extends BaseActivity<AddAddressPresent> implement
             @Override
             public void onClick(View v) {
                 if(tem_province==null || tem_county==null || tem_city==null){
-                    Common.showToastShort("请选择区县市信息");
+                    Common.showToastShort("请选择省市区信息");
                     return;
                 }
                 current_county = tem_county;

@@ -83,7 +83,7 @@
                 android:singleLine="true"
                 android:background="@color/colorWhite"
                 android:id="@+id/province"
-                android:text="选择区县市信息"/>
+                android:text="选择省市区信息"/>
 
             <!--<Button-->
                 <!--android:layout_width="0dp"-->
