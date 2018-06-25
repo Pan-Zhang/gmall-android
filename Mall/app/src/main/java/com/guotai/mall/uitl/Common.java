@@ -172,6 +172,14 @@ public class Common {
         return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "KEY_USER_NAME", "").toString();
     }
 
+    public static String getAvatar(){
+        return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "KEY_USER_AVATAR", "").toString();
+    }
+
+    public static void saveAvatar(String avatar){
+        SharedPreferencesUtils.setParam(MyApplication.getInstance(), "KEY_USER_AVATAR", avatar);
+    }
+
     public static void saveUserID(String userID){
         SharedPreferencesUtils.setParam(MyApplication.getInstance(), "userID", userID);
     }

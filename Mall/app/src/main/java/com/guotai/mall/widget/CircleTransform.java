@@ -16,7 +16,7 @@ import com.squareup.picasso.Transformation;
 public class CircleTransform implements Transformation {
 
     private int mBorderWidth = 4;  //边框宽度
-    private int mBorderColor = R.color.colorAccent;  //边框颜色
+    private int mBorderColor = R.color.colorWhite;  //边框颜色
     private Context context;
 
     public CircleTransform(Context context){

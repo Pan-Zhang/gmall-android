@@ -6,4 +6,6 @@ package com.guotai.mall.activity.suggest;
 
 public interface ISuggestactivity {
 
+    void updateSuccess(boolean success);
+
 }

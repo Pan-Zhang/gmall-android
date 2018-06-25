@@ -144,8 +144,8 @@ public class PersonInfoActivity extends BaseActivity<PersonInfoPresent> implemen
                     getCode.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(TextUtils.isEmpty(content.getText().toString())){
-                                Common.showToastLong("请输入想要绑定的手机号码");
+                            if(!Common.isMobile(content.getText().toString())){
+                                Common.showToastLong("请输入正确的手机号码");
                                 return;
                             }
                             getCode.setClickable(false);
@@ -180,7 +180,9 @@ public class PersonInfoActivity extends BaseActivity<PersonInfoPresent> implemen
                                     break;
                             }
                             present.editInfo("api/Users/Edit", map, tag, PersonInfoActivity.this.getClass().getSimpleName());
-                            dialog.dismiss();
+//                            if(tag!=1){
+//                                dialog.dismiss();
+//                            }
                         }
                     });
                     cancel = (Button) dialog.findViewById(R.id.cancel);
@@ -193,6 +195,7 @@ public class PersonInfoActivity extends BaseActivity<PersonInfoPresent> implemen
                 }
                 dialog.show();
                 content.setText("");
+                smscode_et.setText("");
                 switch (position){
                     case 0:
                         sex_btn.setVisibility(View.GONE);
@@ -321,6 +324,7 @@ public class PersonInfoActivity extends BaseActivity<PersonInfoPresent> implemen
     public void refreshSuccess(Boolean success, int i, String mess) {
         if(success){
             Common.showToastShort(R.string.str_upload_success);
+            dialog.dismiss();
             switch (i) {
                 case 0:
                     Common.saveUser(content.getText().toString());

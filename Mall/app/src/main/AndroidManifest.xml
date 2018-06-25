@@ -172,6 +172,17 @@
         <activity android:name=".activity.WebView.WebViewActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".activity.mySuggest.MySuggestActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.suggestDetail.SuggestDetailAcvitity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+        <activity android:name=".activity.complaintDetail.ComplaintDetailAcvitity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
     </application>
 
 </manifest>

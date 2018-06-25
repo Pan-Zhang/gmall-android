@@ -94,29 +94,84 @@
             android:textColor="@color/colorTextBlack"/>
 
     </RelativeLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorWhite"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone"
+            android:id="@+id/image1"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone"
+            android:id="@+id/image2"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone"
+            android:id="@+id/image3"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/choose_pic"
+            android:background="@mipmap/upload_pic"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="上传照片(最多3张)"/>
+
+    </LinearLayout>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/colorWhite"
         android:layout_marginTop="10dp"
-        android:hint="@string/str_email"
+        android:hint="请输入联系方式"
         android:textColorHint="@color/colorTextGray"
         android:paddingLeft="8dp"
         android:textSize="14sp"
         android:id="@+id/email_tv"
         android:textColor="@color/colorTextBlack"/>
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/common_button"
-        android:text="@string/str_submit"
-        android:textColor="@color/colorWhite"
-        android:id="@+id/submit"
-        android:textSize="16sp"/>
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="bottom">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/app_btn"
+            android:text="@string/str_submit"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/submit"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
 
 </LinearLayout>

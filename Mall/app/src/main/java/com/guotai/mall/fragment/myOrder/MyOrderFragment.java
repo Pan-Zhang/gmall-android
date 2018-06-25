@@ -108,6 +108,7 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
     public void operateButton(int type, int position){
         switch (type){
             case OrderAdapter.CANCEL_BACK://撤销退款（仅退款）
+                _orderEx = list.get(position);
                 if(_orderEx.OrderDetailList.get(0).AfterSaleOrderID==null){
                     Common.showToastShort("未知错误");
                     return;

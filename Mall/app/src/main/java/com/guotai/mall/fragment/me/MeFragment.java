@@ -22,8 +22,8 @@ import com.guotai.mall.activity.help.HelpActivity;
 import com.guotai.mall.activity.login.LoginActivity;
 import com.guotai.mall.activity.managerAddress.ManagerActivity;
 import com.guotai.mall.activity.myOrder.MyOrderActivity;
+import com.guotai.mall.activity.mySuggest.MySuggestActivity;
 import com.guotai.mall.activity.setting.SettingActivity;
-import com.guotai.mall.activity.suggest.SuggestActivity;
 import com.guotai.mall.base.BaseFragment;
 import com.guotai.mall.uitl.Common;
 import com.guotai.mall.widget.CircleTransform;
@@ -85,7 +85,8 @@ public class MeFragment extends BaseFragment<MePresent> implements IMefragment, 
                             break;
 
                         case 1:
-                            startActivity(new Intent(getActivity(), SuggestActivity.class));
+//                            startActivity(new Intent(getActivity(), SuggestActivity.class));
+                            startActivity(new Intent(getActivity(), MySuggestActivity.class));
                             break;
 
                         case 2:
@@ -114,11 +115,17 @@ public class MeFragment extends BaseFragment<MePresent> implements IMefragment, 
     @Override
     public void onResume() {
         super.onResume();
-        if(TextUtils.isEmpty(Common.getUser())){
+        String str = Common.getUser();
+        if(TextUtils.isEmpty(str)){
             username.setText("注册/登录");
         }
         else{
-            username.setText(Common.getUser());
+            if(Common.isMobile(Common.getUser())){
+                username.setText(str.replace(str.substring(3, 7), "****"));
+            }
+            else{
+                username.setText(str);
+            }
         }
     }
 
