@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.2'
     defaultConfig {
         applicationId "com.guotai.mall"
         minSdkVersion 15
@@ -65,15 +65,18 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:25.2.0'
+//    implementation 'com.android.support:appcompat-v7:25.2.0'
+    implementation 'com.android.support:appcompat-v7:27.0.2'
     testImplementation 'junit:junit:4.12'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.squareup.okhttp3:okhttp:3.6.0'
     implementation 'com.google.code.gson:gson:2.6.2'
     //微信sdk，包含统计功能
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-    implementation 'com.android.support:support-v4:25.0.0'
+//    implementation 'com.android.support:support-v4:25.0.0'
     implementation 'com.umeng.analytics:analytics:latest.integration'
     implementation project(':PullToRefresh')
-    compile 'com.yanzhenjie.zbar:camera:1.0.0'
+    implementation 'com.yanzhenjie.zbar:camera:1.0.0'
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
+
 }
