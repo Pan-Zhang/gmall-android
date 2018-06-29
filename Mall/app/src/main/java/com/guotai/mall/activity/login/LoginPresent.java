@@ -61,6 +61,7 @@ public class LoginPresent implements IBasePresent {
                             String mobile = jsonObject.getString("Mobile");
                             String gender = jsonObject.getString("Gender");
                             String birthday = jsonObject.getString("Birthday");
+                            String avatar = jsonObject.getString("HeadImage");
                             Common.saveToken(access_token);
                             Common.saveRefreshToken(refresh_token);
                             Common.saveExpire(expires);
@@ -69,6 +70,7 @@ public class LoginPresent implements IBasePresent {
                             Common.saveMobile(mobile);
                             Common.saveGender(gender);
                             Common.saveBirthday(birthday);
+                            Common.saveAvatar(avatar);
                             if(iLoginactivity!=null){
                                 iLoginactivity.LoginSucc(true);
                             }

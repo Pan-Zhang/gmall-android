@@ -177,11 +177,14 @@
 
         <activity android:name=".activity.suggestDetail.SuggestDetailAcvitity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
 
         <activity android:name=".activity.complaintDetail.ComplaintDetailAcvitity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+
+        <activity android:name=".activity.cropImage.CropImageActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

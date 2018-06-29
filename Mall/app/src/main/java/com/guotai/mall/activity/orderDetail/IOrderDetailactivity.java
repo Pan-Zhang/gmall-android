@@ -1,6 +1,7 @@
 package com.guotai.mall.activity.orderDetail;
 
 import com.guotai.mall.model.Address;
+import com.guotai.mall.model.ProductEx;
 import com.guotai.mall.model.ReturnReason;
 import com.guotai.mall.model.WxParam;
 
@@ -20,4 +21,5 @@ public interface IOrderDetailactivity {
     void alPayRes(boolean success, String reason);
     void ensureReceive(boolean success);
     void cancelBack(Boolean success, String mess);
+    void GotoDetail(ProductEx productEx);
 }

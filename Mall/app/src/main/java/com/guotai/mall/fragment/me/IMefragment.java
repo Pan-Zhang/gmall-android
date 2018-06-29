@@ -6,5 +6,6 @@ package com.guotai.mall.fragment.me;
 
 public interface IMefragment {
 
+    void uploadSucce(boolean success);
 
 }

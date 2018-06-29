@@ -235,6 +235,7 @@ public class PersonInfoActivity extends BaseActivity<PersonInfoPresent> implemen
                         smscode_ll.setVisibility(View.GONE);
                         title.setText(R.string.str_birthday);
                         content.setHint(R.string.str_input_birthday);
+                        String bir = Common.getBirthday();
                         sex_btn.setText(Common.getBirthday());
                         submit.setTag(3);
                         break;
@@ -262,6 +263,7 @@ public class PersonInfoActivity extends BaseActivity<PersonInfoPresent> implemen
                     list.get(1).content = personInfo.Mobile==null?"":personInfo.Mobile;
                     Common.saveGender(personInfo.Gender==null?"":personInfo.Gender);
                     list.get(2).content = personInfo.Gender==null?"":personInfo.Gender;
+                    personInfo.Birthday = personInfo.Birthday.substring(0, personInfo.Birthday.indexOf(" "));
                     Common.saveBirthday(personInfo.Birthday==null?"":personInfo.Birthday);
                     list.get(3).content = personInfo.Birthday==null?"":personInfo.Birthday;
                 }

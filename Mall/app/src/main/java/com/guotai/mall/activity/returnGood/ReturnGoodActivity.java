@@ -70,7 +70,7 @@ public class ReturnGoodActivity extends BaseActivity<ReturnGoodPresent> implemen
         TextView orderId = (TextView) findViewById(R.id.orderId);
         orderId.setText(orderEx.OrderSN);
 
-        mFilePath = Environment.getExternalStorageDirectory().getPath()+ "/test";// 获取SD卡路径
+        mFilePath = Common.AppPath();// 获取SD卡路径
 
         products = (ProductView2) findViewById(R.id.products);
         products.setData(orderEx);
@@ -265,7 +265,7 @@ public class ReturnGoodActivity extends BaseActivity<ReturnGoodPresent> implemen
             if (requestCode == REQUEST_CAMERA) {
                 File file = new File(mFile);
                 try{
-                    if(getFileSize(file)>10){
+                    if(Common.getFileSize(file)>10){
                         Common.showToastLong("图片大小超过10M");
                         return;
                     }
@@ -301,22 +301,6 @@ public class ReturnGoodActivity extends BaseActivity<ReturnGoodPresent> implemen
                 }
             }
         }
-    }
-
-    public double getFileSize(File f) throws Exception{
-
-        long l=0;
-
-        if ( f.exists() ){
-
-            FileInputStream mFIS = new FileInputStream(f);
-
-            l= mFIS.available();
-
-        }
-
-        return (double) l/104875 ;
-
     }
 
     @Override

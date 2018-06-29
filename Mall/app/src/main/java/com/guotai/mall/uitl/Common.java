@@ -1,6 +1,8 @@
 package com.guotai.mall.uitl;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.Environment;
 import android.text.TextUtils;
 import android.widget.Toast;
 
@@ -9,13 +11,24 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.guotai.mall.MyApplication;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.guotai.mall.widget.PickerView.TAG;
 
 /**
  * Created by ez on 2017/6/16.
@@ -84,8 +97,8 @@ public class Common {
         return (int) (dpValue * scale + 0.5f);
     }
 
-    public static String getProductDetailURL(String ProductID, String UserId){
-        return "api/Product/GetProductDetail?ProductID=" + ProductID + "&UserID=" + (UserId.equals("")?"0":UserId);
+    public static String getProductDetailURL(String ProductID, String UserId) {
+        return "api/Product/GetProductDetail?ProductID=" + ProductID + "&UserID=" + (UserId.equals("") ? "0" : UserId);
     }
 
     /**
@@ -123,7 +136,7 @@ public class Common {
         Gson gson = new Gson();
         ArrayList<T> mList = new ArrayList<T>();
         JsonArray array = new JsonParser().parse(jsonData).getAsJsonArray();
-        for(final JsonElement elem : array){
+        for (final JsonElement elem : array) {
             mList.add(gson.fromJson(elem, type));
         }
         return mList;
@@ -135,80 +148,80 @@ public class Common {
         return result;
     }
 
-    public static String ObjectToJson(Object object){
+    public static String ObjectToJson(Object object) {
         Gson gs = new Gson();
         return gs.toJson(object);
     }
 
-    public static void saveToken(String token){
+    public static void saveToken(String token) {
         SharedPreferencesUtils.setParam(MyApplication.getInstance(), "token", token);
     }
 
-    public static String getToken(){
+    public static String getToken() {
         return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "token", "").toString();
     }
 
-    public static void saveRefreshToken(String token){
+    public static void saveRefreshToken(String token) {
         SharedPreferencesUtils.setParam(MyApplication.getInstance(), "refresh_token", token);
     }
 
-    public static String getRefreshToken(){
+    public static String getRefreshToken() {
         return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "refresh_token", "").toString();
     }
 
-    public static void saveExpire(String expire){
+    public static void saveExpire(String expire) {
         SharedPreferencesUtils.setParam(MyApplication.getInstance(), "expire", expire);
     }
 
-    public static String getExpire(){
+    public static String getExpire() {
         return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "expire", "").toString();
     }
 
-    public static void saveUser(String userName){
+    public static void saveUser(String userName) {
         SharedPreferencesUtils.setParam(MyApplication.getInstance(), "KEY_USER_NAME", userName);
     }
 
-    public static String getUser(){
+    public static String getUser() {
         return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "KEY_USER_NAME", "").toString();
     }
 
-    public static String getAvatar(){
+    public static String getAvatar() {
         return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "KEY_USER_AVATAR", "").toString();
     }
 
-    public static void saveAvatar(String avatar){
+    public static void saveAvatar(String avatar) {
         SharedPreferencesUtils.setParam(MyApplication.getInstance(), "KEY_USER_AVATAR", avatar);
     }
 
-    public static void saveUserID(String userID){
+    public static void saveUserID(String userID) {
         SharedPreferencesUtils.setParam(MyApplication.getInstance(), "userID", userID);
     }
 
-    public static String getUserID(){
+    public static String getUserID() {
         return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "userID", "").toString();
     }
 
-    public static void saveMobile(String Mobile){
+    public static void saveMobile(String Mobile) {
         SharedPreferencesUtils.setParam(MyApplication.getInstance(), "KEY_MOBILE", Mobile);
     }
 
-    public static String getMobile(){
+    public static String getMobile() {
         return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "KEY_MOBILE", "").toString();
     }
 
-    public static void saveGender(String gender){
+    public static void saveGender(String gender) {
         SharedPreferencesUtils.setParam(MyApplication.getInstance(), "KEY_GENDER", gender);
     }
 
-    public static String getGender(){
+    public static String getGender() {
         return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "KEY_GENDER", "").toString();
     }
 
-    public static void saveBirthday(String birthday){
+    public static void saveBirthday(String birthday) {
         SharedPreferencesUtils.setParam(MyApplication.getInstance(), "KEY_BIRTHDAY", birthday);
     }
 
-    public static String getBirthday(){
+    public static String getBirthday() {
         return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "KEY_BIRTHDAY", "").toString();
     }
 
@@ -292,8 +305,8 @@ public class Common {
         return Pattern.matches(REGEX_IP_ADDR, ipAddr);
     }
 
-    public static String get2Digital(float number){
-        DecimalFormat decimalFormat=new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+    public static String get2Digital(float number) {
+        DecimalFormat decimalFormat = new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
         return decimalFormat.format(number);//format 返回的是字符串
     }
 
@@ -303,5 +316,71 @@ public class Common {
         Matcher m = p.matcher(psd);
 
         return m.matches();
+    }
+
+    public static double getFileSize(File f) throws Exception {
+
+        long l = 0;
+
+        if (f.exists()) {
+
+            FileInputStream mFIS = new FileInputStream(f);
+
+            l = mFIS.available();
+
+        }
+
+        return (double) l / 104875;
+
+    }
+
+    public static String AppPath() {
+        return Environment.getExternalStorageDirectory().getPath() + "/Fung";
+    }
+
+    /**
+     * 压缩图片（质量压缩）
+     *
+     * @param bitmap
+     */
+    public static File compressImage(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        int options = 100;
+        while (baos.toByteArray().length / 1024 > 500) {  //循环判断如果压缩后图片是否大于500kb,大于继续压缩
+            baos.reset();//重置baos即清空baos
+            options -= 10;//每次都减少10
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+            long length = baos.toByteArray().length;
+        }
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = new Date(System.currentTimeMillis());
+        String filename = format.format(date);
+        File file = new File(Environment.getExternalStorageDirectory(), filename + ".png");
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            try {
+                fos.write(baos.toByteArray());
+                fos.flush();
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        recycleBitmap(bitmap);
+        return file;
+    }
+
+    public static void recycleBitmap(Bitmap... bitmaps) {
+        if (bitmaps==null) {
+            return;
+        }
+        for (Bitmap bm : bitmaps) {
+            if (null != bm && !bm.isRecycled()) {
+                bm.recycle();
+            }
+        }
     }
 }

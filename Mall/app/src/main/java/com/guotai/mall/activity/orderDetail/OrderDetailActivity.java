@@ -22,12 +22,15 @@ import com.guotai.mall.activity.addAddress.AddAddressActivty;
 import com.guotai.mall.activity.logisticsDetail.LogisticsDetailActivity;
 import com.guotai.mall.activity.makeOrder.MakeOrderActivity;
 import com.guotai.mall.activity.payed.PayedActivity;
+import com.guotai.mall.activity.product.ProductActivity;
 import com.guotai.mall.base.BaseActivity;
 import com.guotai.mall.fragment.myOrder.MyOrderFragment;
 import com.guotai.mall.model.Address;
 import com.guotai.mall.model.CarPro;
 import com.guotai.mall.model.Logistics;
+import com.guotai.mall.model.OrderDetailEx;
 import com.guotai.mall.model.OrderEx;
+import com.guotai.mall.model.ProductEx;
 import com.guotai.mall.model.ReturnReason;
 import com.guotai.mall.model.WxParam;
 import com.guotai.mall.uitl.Common;
@@ -127,6 +130,18 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
         type = getIntent().getIntExtra("type", 0);
 
         products = (ProductView2)findViewById(R.id.products);
+        products.setBackExchangeClickListener(new ProductView2.BackExchangeClickListener() {
+            @Override
+            public void OnClick(OrderDetailEx orderDetailEx) {
+
+            }
+
+            @Override
+            public void GotoDetail(OrderDetailEx orderDetailEx) {
+                dialogUtils.showWaitDialog(OrderDetailActivity.this);
+                present.GetDetail(Common.getProductDetailURL(orderDetailEx.ProductID, Common.getUserID()), OrderDetailActivity.this.getClass().getSimpleName());
+            }
+        });
         products.setData(detail);
 
         name_tel = (TextView) findViewById(R.id.name_tel);
@@ -546,6 +561,18 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
         }
         else{
             Common.showToastShort(mess);
+        }
+    }
+
+    @Override
+    public void GotoDetail(ProductEx productEx) {
+        dialogUtils.disMiss();
+        if(productEx==null){
+            Common.showToastShort("获取详情失败");
+        }
+        else{
+            ProductActivity.product = productEx;
+            startActivity(new Intent(this, ProductActivity.class));
         }
     }
 }

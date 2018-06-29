@@ -3,6 +3,7 @@ package com.guotai.mall.activity.orderDetail;
 import com.guotai.mall.base.IBasePresent;
 import com.guotai.mall.model.Address;
 import com.guotai.mall.model.AlParam;
+import com.guotai.mall.model.ProductEx;
 import com.guotai.mall.model.ReturnReason;
 import com.guotai.mall.model.WxParam;
 import com.guotai.mall.uitl.Common;
@@ -170,6 +171,27 @@ public class OrderDetailPresent implements IBasePresent {
             public void onResponse(Call call, String response) {
                 if(iOrderDetailactivity!=null){
                     iOrderDetailactivity.cancelBack(true, response);
+                }
+            }
+        }, tag);
+    }
+
+    public void GetDetail(String link, String tag) {
+        HttpFactory.getInstance().AsyncGet(link, new ResultBack() {
+            @Override
+            public void onFailure(Call call, String e) {
+                if(iOrderDetailactivity!=null){
+                    iOrderDetailactivity.GotoDetail(null);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, String response) {
+
+                ProductEx productEx = Common.parseJsonWithGson(response, ProductEx.class);
+
+                if(iOrderDetailactivity!=null){
+                    iOrderDetailactivity.GotoDetail(productEx);
                 }
             }
         }, tag);
