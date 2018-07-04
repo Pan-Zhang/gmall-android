@@ -37,7 +37,6 @@ public class MySuggestActivity extends BaseActivity<MySuggestPresent> implements
     List<Complaint> complaintList;
     List<Suggestion> suggestionList;
     LinearLayout complaint_ll, suggest_ll;
-    ImageView left_triangle, right_triangle;
     TextView complaint_tv, suggest_tv;
     int suggestPage = 1;
     int complaintPage = 1;
@@ -77,17 +76,13 @@ public class MySuggestActivity extends BaseActivity<MySuggestPresent> implements
 
     private void initTab() {
         suggest_ll = (LinearLayout) findViewById(R.id.suggest_ll);
-        left_triangle = (ImageView) findViewById(R.id.left_triangle);
-        right_triangle = (ImageView) findViewById(R.id.right_triangle);
         suggest_tv = (TextView) findViewById(R.id.suggest_tv);
         complaint_tv = (TextView) findViewById(R.id.complaint_tv);
         suggest_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                left_triangle.setVisibility(View.INVISIBLE);
-                right_triangle.setVisibility(View.VISIBLE);
-                suggest_tv.setTextColor(getResources().getColor(R.color.colorAppBg));
-                complaint_tv.setTextColor(getResources().getColor(R.color.colorWhite));
+                suggest_tv.setTextColor(getResources().getColor(R.color.colorApp));
+                complaint_tv.setTextColor(getResources().getColor(R.color.colorTextGray));
                 suggest_lv.setVisibility(View.VISIBLE);
                 complaint_lv.setVisibility(View.INVISIBLE);
             }
@@ -96,10 +91,8 @@ public class MySuggestActivity extends BaseActivity<MySuggestPresent> implements
         complaint_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                left_triangle.setVisibility(View.VISIBLE);
-                right_triangle.setVisibility(View.INVISIBLE);
-                suggest_tv.setTextColor(getResources().getColor(R.color.colorWhite));
-                complaint_tv.setTextColor(getResources().getColor(R.color.colorAppBg));
+                suggest_tv.setTextColor(getResources().getColor(R.color.colorTextGray));
+                complaint_tv.setTextColor(getResources().getColor(R.color.colorApp));
                 suggest_lv.setVisibility(View.INVISIBLE);
                 complaint_lv.setVisibility(View.VISIBLE);
             }

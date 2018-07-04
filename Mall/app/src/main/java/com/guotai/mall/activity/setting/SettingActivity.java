@@ -17,10 +17,16 @@ import com.guotai.mall.activity.changePw.ChangePwActivity;
 import com.guotai.mall.activity.personInfo.PersonInfoActivity;
 import com.guotai.mall.base.BaseActivity;
 import com.guotai.mall.uitl.Common;
+import com.guotai.mall.uitl.HttpFactory;
+import com.guotai.mall.uitl.ResultBack;
 import com.guotai.mall.uitl.SharedPreferencesUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.Call;
 
 /**
  * Created by zhangpan on 17/6/28.
@@ -96,6 +102,19 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View view) {
         Common.saveToken("");
         Common.saveUser("");
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("UserID", Common.getUserID());
+        HttpFactory.getInstance().AsyncPost("api/Users/LogOut", map, new ResultBack() {
+            @Override
+            public void onFailure(Call call, String e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, String response) {
+
+            }
+        }, getClass().getSimpleName());
         finish();
     }
 }

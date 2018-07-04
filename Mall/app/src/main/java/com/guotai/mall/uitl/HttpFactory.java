@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.util.ArrayMap;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
 import com.guotai.mall.MyApplication;
@@ -33,6 +34,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static android.content.Context.TELEPHONY_SERVICE;
+
 /**
  * Created by ez on 2017/6/16.
  */
@@ -40,7 +43,7 @@ import okhttp3.Response;
 public class HttpFactory {
 
 //    private static final String baseUrl = "http://www.storeappapi.test/";
-    private static final String baseUrl = "http://193.112.97.128/";
+    private static final String baseUrl = "http:api.equalcost.com/";
 //    private static final String baseUrl = "http://183.63.51.130:8889／";
 
     public static final MediaType FORM_CONTENT_TYPE
@@ -60,6 +63,7 @@ public class HttpFactory {
                 Request request = chain.request()
                         .newBuilder()
                         .addHeader("Authorization", "bearer "+Common.getToken())
+                        .addHeader("MachID", MyApplication.getInstance().getImei())
                         .build();
                 return chain.proceed(request);
             }

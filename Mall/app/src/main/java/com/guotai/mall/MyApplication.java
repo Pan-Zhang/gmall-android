@@ -1,6 +1,7 @@
 package com.guotai.mall;
 
 import android.app.Application;
+import android.telephony.TelephonyManager;
 
 import com.guotai.mall.uitl.Constants;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -32,5 +33,11 @@ public class MyApplication extends Application {
     private void regToWx(){
         api = WXAPIFactory.createWXAPI(this, null);
         api.registerApp(Constants.APP_ID);
+    }
+
+    public String getImei(){
+        String Imei = ((TelephonyManager) getSystemService(TELEPHONY_SERVICE))
+                .getDeviceId();
+        return Imei;
     }
 }

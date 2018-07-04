@@ -14,7 +14,6 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:id="@+id/avatar"
-            android:background="@mipmap/head01"
             android:layout_margin="10dp"/>
 
         <LinearLayout
@@ -55,7 +54,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/content"
         android:textColor="@color/colorTextBlack"
-        android:text="你们的东西真是不错，我很满意希望你们出更多更好的产品!!! 一星好评，bang bang bang！！！！！"
+        android:textSize="16sp"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"

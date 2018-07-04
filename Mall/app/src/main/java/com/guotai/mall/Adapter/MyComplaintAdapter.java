@@ -63,16 +63,18 @@ public class MyComplaintAdapter extends MyAdapter<Complaint> {
         Complaint complaint = list.get(position);
 
         holderView.name.setText(complaint.getName());
-        if (!TextUtils.isEmpty(complaint.getAvatar())) {
-            Picasso.with(context).load(complaint.getAvatar()).resize(200, 200).transform(new CircleTransform(context)).centerCrop().into(holderView.avatar);
+        if(!TextUtils.isEmpty(complaint.getAvatar())){
+            Picasso.with(context).load(complaint.getAvatar()).resize(200, 200).transform(new CircleTransform(context)).placeholder(R.mipmap.head01).centerCrop().into(holderView.avatar);
         }
         holderView.time.setText(complaint.getTime());
         holderView.content.setText(complaint.getContent());
-        if (complaint.getStatus() == 0) {
-            holderView.undeal.setBackgroundResource(R.mipmap.undeal);
-        } else {
-            holderView.undeal.setBackgroundResource(R.mipmap.dealed);
+        if(complaint.getStatus()==0){
+            holderView.undeal.setVisibility(View.VISIBLE);
         }
+        else{
+            holderView.undeal.setVisibility(View.INVISIBLE);
+        }
+
         if (complaint.getImages() == null || complaint.getImages().size() == 0) {
             holderView.images.setVisibility(View.GONE);
         } else {

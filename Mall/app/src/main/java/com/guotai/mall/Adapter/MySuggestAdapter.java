@@ -65,16 +65,17 @@ public class MySuggestAdapter extends MyAdapter<Suggestion> {
 
         holderView.name.setText(suggestion.getName());
         if(!TextUtils.isEmpty(suggestion.getAvatar())){
-            Picasso.with(context).load(suggestion.getAvatar()).resize(200, 200).transform(new CircleTransform(context)).centerCrop().into(holderView.avatar);
+            Picasso.with(context).load(suggestion.getAvatar()).resize(200, 200).transform(new CircleTransform(context)).placeholder(R.mipmap.head01).centerCrop().into(holderView.avatar);
         }
         holderView.time.setText(suggestion.getTime());
         holderView.content.setText(suggestion.getContent());
         if(suggestion.getStatus()==0){
-            holderView.undeal.setBackgroundResource(R.mipmap.undeal);
+            holderView.undeal.setVisibility(View.VISIBLE);
         }
         else{
-            holderView.undeal.setBackgroundResource(R.mipmap.dealed);
+            holderView.undeal.setVisibility(View.INVISIBLE);
         }
+
         if(suggestion.getImages()==null || suggestion.getImages().size()==0){
             holderView.images.setVisibility(View.GONE);
         }

@@ -70,8 +70,6 @@ public class ComplaintDetailAcvitity extends BaseActivity<ComplaintDetailPresent
         undeal = (ImageView) findViewById(R.id.undeal);
         if (complaint.getStatus() == 0) {
             undeal.setBackgroundResource(R.mipmap.undeal);
-        } else {
-            undeal.setBackgroundResource(R.mipmap.dealed);
         }
         content = (TextView) findViewById(R.id.content);
         images = (HorizontalScrollView) findViewById(R.id.images);

@@ -68,8 +68,6 @@ public class SuggestDetailAcvitity extends BaseActivity<SuggestDetailPresent> im
         undeal = (ImageView) findViewById(R.id.undeal);
         if (suggestion.getStatus() == 0) {
             undeal.setBackgroundResource(R.mipmap.undeal);
-        } else {
-            undeal.setBackgroundResource(R.mipmap.dealed);
         }
         images = (HorizontalScrollView) findViewById(R.id.images);
         imageViews = new ImageView[5];
