@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface IMessageactivity {
 
-    void refresh(List<Message> list);
+    void refresh(List<Message> list, boolean Success);
 }

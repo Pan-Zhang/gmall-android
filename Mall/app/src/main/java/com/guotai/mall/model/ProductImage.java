@@ -9,7 +9,7 @@ public class ProductImage {
     private String ImageID;
     private String ProductID;
     private String ProductSubID;
-    private String ImageCategoryID;
+    private int ImageCategoryID;
     private String ImagePath;
     private String ImageTitle;
     private String DisplayStartTime;
@@ -21,7 +21,7 @@ public class ProductImage {
     public ProductImage() {
     }
 
-    public ProductImage(String imageID, String productID, String productSubID, String imageCategoryID, String imagePath, String imageTitle, String displayStartTime, String displayEndTime, String displayFlag, String updateTime, String imageCategoryName) {
+    public ProductImage(String imageID, String productID, String productSubID, int imageCategoryID, String imagePath, String imageTitle, String displayStartTime, String displayEndTime, String displayFlag, String updateTime, String imageCategoryName) {
         ImageID = imageID;
         ProductID = productID;
         ProductSubID = productSubID;
@@ -47,7 +47,7 @@ public class ProductImage {
         return ProductSubID;
     }
 
-    public String getImageCategoryID() {
+    public int getImageCategoryID() {
         return ImageCategoryID;
     }
 
@@ -91,7 +91,7 @@ public class ProductImage {
         ProductSubID = productSubID;
     }
 
-    public void setImageCategoryID(String imageCategoryID) {
+    public void setImageCategoryID(int imageCategoryID) {
         ImageCategoryID = imageCategoryID;
     }
 

@@ -30,7 +30,9 @@ import com.guotai.mall.model.OrderEx;
 import com.guotai.mall.model.Product;
 import com.guotai.mall.model.ProductDetail;
 import com.guotai.mall.model.ProductEx;
+import com.guotai.mall.model.ProductImage;
 import com.guotai.mall.uitl.Common;
+import com.guotai.mall.widget.ProductBigImage;
 import com.guotai.mall.widget.ViewPagerIndicator;
 import com.squareup.picasso.Picasso;
 
@@ -58,10 +60,12 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
     TextView add_to_car, buy_now;
     public static ProductEx product;
     private Dialog dialog;
-    LinearLayout attr_ll;
+    LinearLayout attr_ll, pic_ll;
     ViewPagerIndicator indicator;
     Button count;
     Map<String, Object> choose_attr;
+    List<ProductImage> head_images;
+    List<ProductImage> footer_images;
     int type;
 
     @Override
@@ -99,7 +103,18 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
             }
         });
         product_vp = (ViewPager) findViewById(R.id.product_vp);
-        productAdapter = new ProductAdapter(this, (product.ProductImage==null || product.ProductImage.size()==0)?null:product.ProductImage);
+        head_images = new ArrayList<>();
+        footer_images = new ArrayList<>();
+        for(int i=0; i<product.ProductImage.size(); i++){
+            ProductImage productImage = product.ProductImage.get(i);
+            if(productImage.getImageCategoryID()==1){
+                head_images.add(productImage);
+            }
+            else{
+                footer_images.add(productImage);
+            }
+        }
+        productAdapter = new ProductAdapter(this, (head_images==null || head_images.size()==0)?null:head_images);
         product_vp.setAdapter(productAdapter);
         product_vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -119,7 +134,7 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
         });
 
         indicator = (ViewPagerIndicator) findViewById(R.id.indicator);
-        indicator.setLength(product.ProductImage.size());
+        indicator.setLength(head_images.size());
 
         ImageView off_shelf = (ImageView) findViewById(R.id.off_shelf);
         if(product.ProductStatusID==2){
@@ -189,6 +204,12 @@ public class ProductActivity extends BaseActivity<ProductPresent> implements IPr
             }
         }
 
+        pic_ll = (LinearLayout) findViewById(R.id.pic_ll);
+        for(int i=0; i<footer_images.size(); i++){
+            ProductBigImage productBigImage = new ProductBigImage(this);
+            Picasso.with(this).load(footer_images.get(i).getImagePath()).resize(720, 720).centerInside().into(productBigImage);
+            pic_ll.addView(productBigImage);
+        }
 
         my_collection = (Button) findViewById(R.id.my_collection);
         my_collection.setOnClickListener(this);

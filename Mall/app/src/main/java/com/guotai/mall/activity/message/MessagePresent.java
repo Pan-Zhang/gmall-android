@@ -2,6 +2,7 @@ package com.guotai.mall.activity.message;
 
 import com.guotai.mall.base.IBasePresent;
 import com.guotai.mall.model.Message;
+import com.guotai.mall.uitl.Common;
 import com.guotai.mall.uitl.HttpFactory;
 import com.guotai.mall.uitl.ResultBack;
 
@@ -31,19 +32,17 @@ public class MessagePresent implements IBasePresent {
         HttpFactory.getInstance().AsyncGet(url, new ResultBack() {
             @Override
             public void onFailure(Call call, String e) {
-
+                if(iMessageactivity!=null){
+                    iMessageactivity.refresh(null, false);
+                }
             }
 
             @Override
             public void onResponse(Call call, String response) {
-                List<Message> list = new ArrayList<Message>();
-                Message message = new Message();
-                message.mess = "尊敬的客户您好，为回馈新老客户支持，本公司“双十一”火爆大促销，全场低至五折，满1000包邮，且有iphone7、话费抽奖、更多惊喜等你来拿!";
-                message.date = "2017-06-17 13:34:24";
-                list.add(message);
+                List<Message> list = Common.parseJsonArrayWithGson(response, Message.class);
 
                 if(iMessageactivity!=null){
-                    iMessageactivity.refresh(list);
+                    iMessageactivity.refresh(list, true);
                 }
             }
         }, tag);

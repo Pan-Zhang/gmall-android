@@ -215,6 +215,7 @@ public class BuyCarFragment extends BaseFragment<BuycarPresent> implements IBuyc
         }
         else{
             car_lv.setRefreshing(true);
+            present.getData(getClass().getSimpleName(), url);
         }
 
     }

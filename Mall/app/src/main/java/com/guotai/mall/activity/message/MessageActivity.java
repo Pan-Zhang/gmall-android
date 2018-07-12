@@ -10,6 +10,7 @@ import com.guotai.mall.Adapter.MessAdapter;
 import com.guotai.mall.R;
 import com.guotai.mall.base.BaseActivity;
 import com.guotai.mall.model.Message;
+import com.guotai.mall.uitl.Common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class MessageActivity extends BaseActivity<MessagePresent> implements IMe
     ListView mess_lv;
     MessAdapter messAdapter;
     List<Message> list;
-    String url = "https:www.baidu.com";
+    String url = "api/Store/GetNotifyMsg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +55,13 @@ public class MessageActivity extends BaseActivity<MessagePresent> implements IMe
     }
 
     @Override
-    public void refresh(List<Message> list) {
-        this.list = list;
-        messAdapter.update(list);
+    public void refresh(List<Message> list, boolean Sucess) {
+        if(Sucess){
+            this.list = list;
+            messAdapter.update(list);
+        }
+        else{
+            Common.showToastShort("加载失败");
+        }
     }
 }

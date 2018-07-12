@@ -28,9 +28,9 @@ public class MessAdapter extends MyAdapter<Message> {
         }
         Message mess = list.get(position);
         TextView mess_tv = (TextView) convertView.findViewById(R.id.mess_tv);
-        mess_tv.setText(mess.mess);
+        mess_tv.setText(mess.Message);
         TextView mess_date = (TextView) convertView.findViewById(R.id.date_tv);
-        mess_date.setText(mess.date);
+        mess_date.setText(mess.Createtime);
         return convertView;
     }
 }

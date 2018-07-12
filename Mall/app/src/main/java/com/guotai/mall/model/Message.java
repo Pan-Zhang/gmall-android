@@ -6,7 +6,14 @@ package com.guotai.mall.model;
 
 public class Message {
 
-    public String mess;
-    public String date;
+    public int MsgID;
+    public int MsgTypeID;
+    public String Title;
+    public String Message;
+    public String LinkAddr;
+    public String Createtime;
+    public String StartTime;
+    public String EndTime;
+    public String ImagePath;
 
 }
