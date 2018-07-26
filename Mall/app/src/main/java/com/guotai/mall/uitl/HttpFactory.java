@@ -69,6 +69,7 @@ public class HttpFactory {
             }
 
         });
+        builder.retryOnConnectionFailure(true);
         //设置cookie，保持状态
         builder.cookieJar(new CookieJar() {
             private final HashMap<String, List<Cookie>> cookieStore = new HashMap<String, List<Cookie>>();

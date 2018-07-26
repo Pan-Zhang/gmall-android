@@ -70,7 +70,7 @@ public class OrderDetailActivity extends BaseActivity<OrderDetailPresent> implem
 
     AliPayHandler mHandler;
 
-    public int type;
+    public int type;//这个参数跟页面对应
 
     private static final int PAY_RESULT = 0;
 

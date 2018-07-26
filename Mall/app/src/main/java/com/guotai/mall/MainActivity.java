@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity {
                     Common.saveUser(personInfo.UserName==null?"":personInfo.UserName);
                     Common.saveMobile(personInfo.Mobile==null?"":personInfo.Mobile);
                     Common.saveGender(personInfo.Gender==null?"":personInfo.Gender);
-                    personInfo.Birthday = personInfo.Birthday.substring(0, personInfo.Birthday.indexOf(" "));
+                    personInfo.Birthday = personInfo.Birthday==null?"":personInfo.Birthday.substring(0, personInfo.Birthday.indexOf(" "));
                     Common.saveBirthday(personInfo.Birthday==null?"":personInfo.Birthday);
                 }
             }, getClass().getSimpleName());

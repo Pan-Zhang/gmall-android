@@ -186,6 +186,21 @@
         <activity android:name=".activity.cropImage.CropImageActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".activity.sale.SaleActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.promotion.PromotionActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.subPromotion.SubPromotionActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.orderMsg.OrderMsgActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.systemMsg.SystemMsgActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

@@ -144,7 +144,7 @@ public class HomeFragment extends BaseFragment<HomePresent> implements IHomeFrag
                     public void run() {
                         present.GetDetail(Common.getProductDetailURL(product.ProductID, Common.getUserID()), getClass().getSimpleName());
                     }
-                }, 500);
+                }, 100);
             }
         });
         refreshLayout = (VpSwipeRefreshLayout) rootView.findViewById(R.id.refresh);

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/colorAppBg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorGray"
+        android:textColor="@color/colorWhite"
+        android:textSize="12sp"
+        android:gravity="center_horizontal"
+        android:id="@+id/time"
+        android:text="2018-08-23 00:00"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorWhite"
+        android:layout_margin="10dp"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorProduct"
+            android:textStyle="bold"
+            android:id="@+id/title"
+            android:text="订单消息"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextGray"
+            android:textSize="14sp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/content"
+            android:text="客观您好，您的订单已发货，请注意接收！"/>
+
+    </LinearLayout>
+
+</LinearLayout>

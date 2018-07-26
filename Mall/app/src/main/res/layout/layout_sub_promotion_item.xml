@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorAppBg">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:layout_margin="3dp"
+        android:paddingBottom="10dp">
+
+        <com.guotai.mall.widget.ProductImage
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/product"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="25dp"
+                android:background="@mipmap/label" />
+
+            <TextView
+                android:id="@+id/sale_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="3dp"
+                android:textColor="@color/colorWhite"
+                android:text="3折"
+                android:textStyle="bold"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/product"
+            android:id="@+id/name"
+            android:layout_margin="5dp"
+            android:text="优雅玫瑰金钻戒"
+            android:singleLine="true"
+            android:textColor="@color/colorProduct"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:text="原价1299.9"
+            android:id="@+id/old_price"
+            android:textSize="10sp"
+            android:layout_alignLeft="@id/name"
+            android:textColor="@color/colorTextGray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥999.9"
+            android:textColor="@color/colorPriceText"
+            android:layout_below="@id/old_price"
+            android:id="@+id/new_price"
+            android:layout_alignLeft="@id/old_price"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/product"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/car_add"
+            android:layout_alignBottom="@id/new_price"
+            android:background="@mipmap/red_car"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

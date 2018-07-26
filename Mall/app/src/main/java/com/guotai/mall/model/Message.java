@@ -5,15 +5,10 @@ package com.guotai.mall.model;
  */
 
 public class Message {
-
-    public int MsgID;
     public int MsgTypeID;
-    public String Title;
-    public String Message;
-    public String LinkAddr;
-    public String Createtime;
-    public String StartTime;
-    public String EndTime;
-    public String ImagePath;
+    public String MsgTypeName;
+    public String MsgTypeDesc;
+    public String FirstMessage;
+    public String MessageTime;
 
 }
