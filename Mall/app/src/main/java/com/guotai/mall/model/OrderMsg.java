@@ -11,5 +11,5 @@ public class OrderMsg {
     public String LogisticsOrderID;
     public String SendTime;
     public String OrderMessage;
-    public boolean IsAfterOrder;
+    public int IsApplyAfterSale;
 }
