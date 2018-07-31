@@ -5,6 +5,7 @@ public class OrderMsg {
     public String OrderSN;
     public int UserID;
     public String OrderTime;
+    public String UpdateTime;
     public int OrderStatusID;
     public int LogisticsID;
     public String LogisticsName;

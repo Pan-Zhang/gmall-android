@@ -10,5 +10,6 @@ public class SubPromotion {
     public String ProductTag;
     public String Createtime;
     public String ImagePath;
+    public List<PromotionImages> promotionImages;
     public List<ProductEx> ProductList;
 }

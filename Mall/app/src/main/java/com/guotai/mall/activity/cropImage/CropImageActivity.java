@@ -70,11 +70,17 @@ public class CropImageActivity extends BaseActivity {
         right_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap cropped = cropImageView.getCroppedImage();
-                File file = Common.compressImage(cropped);
-                Intent i=new Intent();
-                i.putExtra("CROP_PATH", file.getAbsolutePath());
-                setResult(2,i);
+                if(cropImageView==null){
+                    Intent i=new Intent();
+                    setResult(-1,i);
+                }
+                else{
+                    Bitmap cropped = cropImageView.getCroppedImage();
+                    File file = Common.compressImage(cropped);
+                    Intent i=new Intent();
+                    i.putExtra("CROP_PATH", file.getAbsolutePath());
+                    setResult(2,i);
+                }
                 finish();
             }
         });

@@ -37,7 +37,7 @@ public class SubPromotionActivity extends BaseActivity<SubPromotionPresent> impl
         gridView = (HeaderGridView) findViewById(R.id.grid_view);
         View head = LayoutInflater.from(this).inflate(R.layout.layout_promotion_tail, null);
         PromotionImage2 tail_iv = (PromotionImage2) head.findViewById(R.id.tail_iv);
-        Picasso.with(this).load(subPromotion.ImagePath).fit().into(tail_iv);
+        Picasso.with(this).load(subPromotion.promotionImages.get(0).ImagePath).fit().into(tail_iv);
         gridView.addHeaderView(head);
         subPromotionAdapter = new SubPromotionAdapter(this, subPromotion.ProductList);
         subPromotionAdapter.setSaleTag(subPromotion.ProductTag);

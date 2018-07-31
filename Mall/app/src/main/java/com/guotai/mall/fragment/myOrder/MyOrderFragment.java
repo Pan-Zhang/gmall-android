@@ -191,6 +191,8 @@ public class MyOrderFragment extends BaseFragment<MyOrderPresent> implements IMy
         dialogUtils.disMiss();
         if(success){
             Common.showToastShort("取消订单成功");
+            page = 1;
+            getUrl();
             present.GetData(url, getClass().getSimpleName());
         }
         else{

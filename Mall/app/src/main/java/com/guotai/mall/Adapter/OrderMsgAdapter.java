@@ -24,7 +24,7 @@ public class OrderMsgAdapter extends MyAdapter<OrderMsg> {
         }
         OrderMsg orderMsg = list.get(position);
         TextView time = (TextView) convertView.findViewById(R.id.time);
-        time.setText(orderMsg.OrderTime);
+        time.setText(orderMsg.UpdateTime);
         TextView title = (TextView) convertView.findViewById(R.id.title);
         title.setText(orderMsg.OrderSN);
         TextView content = (TextView) convertView.findViewById(R.id.content);

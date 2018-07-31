@@ -225,6 +225,17 @@ public class Common {
         return SharedPreferencesUtils.getParam(MyApplication.getInstance(), "KEY_BIRTHDAY", "").toString();
     }
 
+    public static void Clear(){
+        saveAvatar("");
+        saveUser("");
+        saveToken("");
+        saveGender("");
+        saveMobile("");
+        saveBirthday("");
+        saveExpire("");
+        saveUserID("");
+    }
+
     /**
      * 校验用户名
      *

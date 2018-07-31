@@ -138,7 +138,7 @@ public class HttpFactory {
                     }
                     else if(jsonObject.has("code") && jsonObject.getInt("code")==401){
                         DealFailure(resultBack, call, null);
-                        Common.saveToken("");
+                        Common.Clear();
                         Intent intent = new Intent(MyApplication.getInstance(), LoginActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         MyApplication.getInstance().startActivity(intent);
@@ -246,6 +246,7 @@ public class HttpFactory {
                         DealFailure(resultBack, call, null);
                         Intent intent = new Intent(MyApplication.getInstance(), LoginActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Common.Clear();
                         MyApplication.getInstance().startActivity(intent);
                     }
                     else{

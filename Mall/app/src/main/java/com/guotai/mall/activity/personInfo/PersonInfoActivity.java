@@ -263,7 +263,9 @@ public class PersonInfoActivity extends BaseActivity<PersonInfoPresent> implemen
                     list.get(1).content = personInfo.Mobile==null?"":personInfo.Mobile;
                     Common.saveGender(personInfo.Gender==null?"":personInfo.Gender);
                     list.get(2).content = personInfo.Gender==null?"":personInfo.Gender;
-                    personInfo.Birthday = personInfo.Birthday.substring(0, personInfo.Birthday.indexOf(" "));
+                    if(personInfo.Birthday!=null){
+                        personInfo.Birthday = personInfo.Birthday.substring(0, personInfo.Birthday.indexOf(" "));
+                    }
                     Common.saveBirthday(personInfo.Birthday==null?"":personInfo.Birthday);
                     list.get(3).content = personInfo.Birthday==null?"":personInfo.Birthday;
                 }
